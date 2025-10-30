@@ -2,12 +2,22 @@
 
 ## Quick Start
 
-### 1. Create Environment File
+### 1. Configure MongoDB Connection
+
+**For Local Development:**
 
 Create a `.env` file in the `recommendation-poc-app` directory with your MongoDB connection:
 
 ```bash
 MONGODB_URL=mongodb+srv://your-username:your-password@your-cluster.mongodb.net/?retryWrites=true&w=majority
+```
+
+**For Streamlit Cloud Deployment:**
+
+The app will automatically use Streamlit secrets. No `.env` file needed. Configure in your app settings:
+
+```toml
+MONGODB_URL = "mongodb+srv://your-username:your-password@your-cluster.mongodb.net/?retryWrites=true&w=majority"
 ```
 
 ### 2. Install Dependencies

@@ -40,6 +40,8 @@ pip install -r requirements.txt
 
 ### 2. Configure Environment Variables
 
+**Option A: Local Development (using .env file)**
+
 Create a `.env` file in the `recommendation-poc-app` directory:
 
 ```bash
@@ -50,6 +52,14 @@ Edit `.env` and add your MongoDB connection string:
 
 ```
 MONGODB_URL=mongodb+srv://your-connection-string
+```
+
+**Option B: Streamlit Cloud Deployment (using secrets)**
+
+The app automatically detects and uses Streamlit secrets when `.env` is not available. In your Streamlit Cloud dashboard, add:
+
+```toml
+MONGODB_URL = "mongodb+srv://your-connection-string"
 ```
 
 ### 3. Verify MongoDB Collections

@@ -320,10 +320,11 @@ st.image(content['cover_page'], use_column_width=True)
 1. Push code to GitHub
 2. Go to https://share.streamlit.io
 3. Connect repository
-4. Add secrets in dashboard:
-   ```
+4. Add secrets in dashboard (App Settings > Secrets):
+   ```toml
    MONGODB_URL = "your-connection-string"
    ```
+   Note: The app automatically detects and uses Streamlit secrets when `.env` is not available.
 5. Deploy!
 
 ### Deploy with Docker

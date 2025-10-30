@@ -1,11 +1,21 @@
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables from .env file
 load_dotenv()
 
 # MongoDB Configuration
+# Try .env first, then fall back to Streamlit secrets
 MONGODB_URL = os.getenv('MONGODB_URL')
+
+# If not found in .env, try Streamlit secrets (for deployment)
+if not MONGODB_URL:
+    try:
+        import streamlit as st
+        MONGODB_URL = st.secrets.get("MONGODB_URL", None)
+    except (ImportError, FileNotFoundError, KeyError):
+        # Streamlit not available or secrets not configured
+        pass
 DATABASE_NAME = 'kitab-prod-tables'
 QUESTIONS_COLLECTION = 'seed_onboarding_questions'
 CONTENT_COLLECTION = 'combined'
