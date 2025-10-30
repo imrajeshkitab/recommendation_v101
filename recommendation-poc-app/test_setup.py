@@ -55,7 +55,7 @@ except Exception as e:
 print("\n4️⃣ Checking database and collections...")
 db = client['kitab-prod-tables']
 questions_collection = db['seed_onboarding_questions']
-content_collection = db['bytes_tagged']
+content_collection = db['combined']
 
 question_count = questions_collection.count_documents({})
 content_count = content_collection.count_documents({'published': True})
@@ -68,7 +68,7 @@ if question_count == 0:
     print("   💡 Verify the collection name and data")
 
 if content_count == 0:
-    print("   ⚠️  No published content found in bytes_tagged")
+    print("   ⚠️  No published content found in combined")
     print("   💡 Verify content has published: true and tags field")
 
 # Test 5: Check question structure

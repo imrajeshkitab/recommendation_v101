@@ -123,7 +123,7 @@ A modern, production-ready Streamlit application for personalized content recomm
 │                   MongoDB Database                           │
 │                   kitab-prod-tables                          │
 │  ┌────────────────────┐  ┌────────────────────┐           │
-│  │ seed_onboarding_   │  │   bytes_tagged     │           │
+│  │ seed_onboarding_   │  │   combined         │           │
 │  │    questions       │  │                    │           │
 │  └────────────────────┘  └────────────────────┘           │
 └─────────────────────────────────────────────────────────────┘

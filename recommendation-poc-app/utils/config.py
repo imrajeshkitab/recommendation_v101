@@ -8,7 +8,7 @@ load_dotenv()
 MONGODB_URL = os.getenv('MONGODB_URL')
 DATABASE_NAME = 'kitab-prod-tables'
 QUESTIONS_COLLECTION = 'seed_onboarding_questions'
-CONTENT_COLLECTION = 'bytes_tagged'
+CONTENT_COLLECTION = 'combined'
 
 # App Configuration
 TOP_K_RECOMMENDATIONS = 10

@@ -56,7 +56,7 @@ MONGODB_URL=mongodb+srv://your-connection-string
 
 Ensure your MongoDB database (`kitab-prod-tables`) has:
 - Collection: `seed_onboarding_questions` with `option_tags` field
-- Collection: `bytes_tagged` with `tags` field
+- Collection: `combined` with `tags` field
 
 ### 4. Run the App
 

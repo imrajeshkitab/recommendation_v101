@@ -46,7 +46,7 @@ Before running the app, verify:
 - [ ] MongoDB connection is accessible (check IP whitelist on Atlas)
 - [ ] Database `kitab-prod-tables` exists
 - [ ] Collection `seed_onboarding_questions` exists with 9 questions
-- [ ] Collection `bytes_tagged` exists with content and `tags` field
+- [ ] Collection `combined` exists with content and `tags` field
 - [ ] Questions have `option_tags` field populated
 - [ ] Content has `published: true` field
 
@@ -69,7 +69,7 @@ print("✅ Connected to MongoDB!")
 # Check collections
 db = client['kitab-prod-tables']
 print(f"Questions: {db.seed_onboarding_questions.count_documents({})}")
-print(f"Content: {db.bytes_tagged.count_documents({})}")
+print(f"Content: {db.combined.count_documents({})}")
 ```
 
 ## Troubleshooting
@@ -92,7 +92,7 @@ Create `.env` file in `recommendation-poc-app/` directory (not root)
 
 ### No Content Found
 
-- Check collection name is `bytes_tagged`
+- Check collection name is `combined`
 - Verify content has `published: true`
 - Verify content has `tags` field with tag categories
 
@@ -113,7 +113,7 @@ Required fields:
 - `options` (object): `{"1": "Option 1", "2": "Option 2"}`
 - `option_tags` (object): `{"1": ["tag1", "tag2"], "2": ["tag3"]}`
 
-### bytes_tagged
+### combined
 
 Required fields:
 - `title` (string): Content title

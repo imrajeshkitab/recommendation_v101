@@ -108,7 +108,7 @@ MONGODB_URL=mongodb+srv://your-connection-string
 → Run: `python3 setup_question_tags.py`
 
 **No Content Found?**  
-→ Verify collection: `kitab-prod-tables.bytes_tagged`  
+→ Verify collection: `kitab-prod-tables.combined`  
 → Check content has `published: true` and `tags` field
 
 **Import Errors?**  
