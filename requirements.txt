@@ -2,3 +2,7 @@ pymongo>=4.6.0
 python-dotenv>=1.0.0
 google-generativeai>=0.3.0
 
+# Streamlit Recommendation App
+streamlit>=1.28.0
+pandas>=2.0.0
+

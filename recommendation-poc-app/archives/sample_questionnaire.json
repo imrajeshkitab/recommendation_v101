@@ -1,0 +1,60 @@
+{
+  "_id": {
+    "$oid": "69021a48f076806da55e74d9"
+  },
+  "question": "What is your age group?",
+  "type": "single_choice",
+  "options": {
+    "1": "16-25 years",
+    "2": "26-35 years",
+    "3": "36-50 years",
+    "4": "50+ years"
+  },
+  "images": {
+    "50": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/kitab-data/App-Data/age_50.png",
+    "16_25": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/kitab-data/App-Data/age_16-25.png",
+    "26_35": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/kitab-data/App-Data/age_26-45.png",
+    "36_50": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/kitab-data/App-Data/age_36-50.png"
+  },
+  "id": {
+    "$binary": {
+      "base64": "NtO5U48mQQ+MZHKed42HZg==",
+      "subType": "04"
+    }
+  },
+  "sequence": 1,
+  "option_tags": {
+    "1": [
+      "young adult",
+      "early twenties",
+      "Gen Z",
+      "college age",
+      "career starter",
+      "emerging adult"
+    ],
+    "2": [
+      "millennials",
+      "young professional",
+      "career building",
+      "settling down",
+      "early thirties",
+      "family planning"
+    ],
+    "3": [
+      "mid-career",
+      "Gen X",
+      "established professional",
+      "family focused",
+      "midlife",
+      "experienced"
+    ],
+    "4": [
+      "mature",
+      "senior",
+      "experienced",
+      "wisdom seeker",
+      "retirement planning",
+      "legacy building"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+    "_id": {
+      "$oid": "69021947f076806da55e60af"
+    },
+    "created_at": "2025-09-16 13:27:19.593+00",
+    "source_id": {
+      "$binary": {
+        "base64": "At0tyui3Rsy2KfaGU19w+w==",
+        "subType": "04"
+      }
+    },
+    "cover_page": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/content/bytes/cover-pages/02dd2dca-e8b7-46cc-b629-f686535f70fb.webp",
+    "audio": "https://ziifsmeagbyyjsnmxwns.supabase.co/storage/v1/object/public/content/bytes/audio/02dd2dca-e8b7-46cc-b629-f686535f70fb.mp3",
+    "duration": "1:23",
+    "content": "The word \"recovery\" promises a return to how things were. But what if the \"normal\" you're trying to get back to after a major challenge no longer exists?\n\n**Recovery is a Rebirth, Not a Rewind.**\nTrue healing isn’t about rewinding the clock to before an illness or hardship. That version of you is in the past. Every significant challenge, physical or emotional, leaves its mark—a memory in your body and a shift in your mind. The real recovery isn't just from the disease, but from the mental \"dis-ease\" that comes with it: the fear, the anxiety, the uncertainty. This struggle holds a hidden gift. By consciously working through it, you don't just return to who you were; you get the chance to be reborn into someone stronger, more aware, and more resilient.\n\n**Your Practice:**\nTake 60 seconds to reframe a past challenge. Think of a difficult time you went through. Instead of dwelling on what you lost, ask yourself: \"What new strength did I uncover because of this?\" See the event not as a wound, but as a springboard.\n\n**A Final Thought:**\nHealing isn’t about erasing the past. It’s about using its lessons to build a more conscious you.",
+    "title": "Recovery is Rebirth",
+    "id": {
+      "$binary": {
+        "base64": "At0tyui3Rsy2KfaGU19w+w==",
+        "subType": "04"
+      }
+    },
+    "category": "Personal Development",
+    "author": "DR YVES BENHAMOU",
+    "priority": false,
+    "published": true,
+    "updated_at": "2025-09-24 11:55:20.036633+00",
+    "tags": {
+      "life_stage_age": [],
+      "life_stage_relationship": [],
+      "life_stage_parenting": [],
+      "primary_need": [
+        "personal growth",
+        "self-improvement",
+        "development",
+        "potential",
+        "transformation",
+        "peace",
+        "balance",
+        "stress relief",
+        "mental health",
+        "tranquility",
+        "emotional stability",
+        "clarity seeking"
+      ],
+      "motivation_driver": [
+        "inner peace",
+        "serenity",
+        "calm",
+        "mindfulness",
+        "stress-free",
+        "self-discovery",
+        "identity",
+        "introspection",
+        "self-awareness",
+        "meaning",
+        "life purpose",
+        "direction",
+        "clarity",
+        "path finding"
+      ],
+      "cognitive_style": [
+        "values-driven",
+        "emotional",
+        "intuitive",
+        "innovative",
+        "imaginative"
+      ],
+      "content_depth": [
+        "busy",
+        "time-constrained",
+        "quick learner",
+        "efficient",
+        "brief sessions",
+        "micro-learning"
+      ],
+      "learning_style": [
+        "energetic",
+        "impact-driven",
+        "dynamic",
+        "transformational",
+        "reflective",
+        "philosophical",
+        "contemplative",
+        "introspective",
+        "thoughtful",
+        "practical",
+        "results-oriented",
+        "action-focused"
+      ]
+    }
+  }
