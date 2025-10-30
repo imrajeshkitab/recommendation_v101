@@ -1,0 +1,192 @@
+📝 Test 1/36: 'young'
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1761755207.552887  442617 alts_credentials.cc:93] ALTS creds ignored. Not running on GCP and untrusted ALTS is not enabled.
+   'young' ↔ 'age 10-25': 0.697216
+   'young' ↔ 'age 50-60': 0.670157
+   ✅ PASS (0.697216 > 0.670157)
+
+📝 Test 2/36: 'young person'
+   'young person' ↔ 'age 15-25': 0.739688
+   'young person' ↔ 'age 65-75': 0.651727
+   ✅ PASS (0.739688 > 0.651727)
+
+📝 Test 3/36: 'youth'
+   'youth' ↔ 'age 12-24': 0.763264
+   'youth' ↔ 'age 55-70': 0.660448
+   ✅ PASS (0.763264 > 0.660448)
+
+📝 Test 4/36: 'teenager'
+   'teenager' ↔ 'age 13-19': 0.787715
+   'teenager' ↔ 'age 40-50': 0.669639
+   ✅ PASS (0.787715 > 0.669639)
+
+📝 Test 5/36: 'teen'
+   'teen' ↔ 'age 13-17': 0.781937
+   'teen' ↔ 'age 60-70': 0.668515
+   ✅ PASS (0.781937 > 0.668515)
+
+📝 Test 6/36: 'adolescent'
+   'adolescent' ↔ 'age 12-18': 0.765737
+   'adolescent' ↔ 'age 45-60': 0.666561
+   ✅ PASS (0.765737 > 0.666561)
+
+📝 Test 7/36: 'child'
+   'child' ↔ 'age 5-12': 0.721026
+   'child' ↔ 'age 50-65': 0.604696
+   ✅ PASS (0.721026 > 0.604696)
+
+📝 Test 8/36: 'kid'
+   'kid' ↔ 'age 6-14': 0.701381
+   'kid' ↔ 'age 55-70': 0.598376
+   ✅ PASS (0.701381 > 0.598376)
+
+📝 Test 9/36: 'infant'
+   'infant' ↔ 'age 0-2': 0.775035
+   'infant' ↔ 'age 40-60': 0.632371
+   ✅ PASS (0.775035 > 0.632371)
+
+📝 Test 10/36: 'toddler'
+   'toddler' ↔ 'age 1-3': 0.795574
+   'toddler' ↔ 'age 50-70': 0.618754
+   ✅ PASS (0.795574 > 0.618754)
+
+📝 Test 11/36: 'preschooler'
+   'preschooler' ↔ 'age 3-5': 0.781272
+   'preschooler' ↔ 'age 45-65': 0.614841
+   ✅ PASS (0.781272 > 0.614841)
+
+📝 Test 12/36: 'young adult'
+   'young adult' ↔ 'age 18-30': 0.761522
+   'young adult' ↔ 'age 60-75': 0.685978
+   ✅ PASS (0.761522 > 0.685978)
+
+📝 Test 13/36: 'college age'
+   'college age' ↔ 'age 18-24': 0.822535
+   'college age' ↔ 'age 50-65': 0.764425
+   ✅ PASS (0.822535 > 0.764425)
+
+📝 Test 14/36: 'twenties'
+   'twenties' ↔ 'age 20-29': 0.752273
+   'twenties' ↔ 'age 55-70': 0.653153
+   ✅ PASS (0.752273 > 0.653153)
+
+📝 Test 15/36: 'middle-aged'
+   'middle-aged' ↔ 'age 40-55': 0.800826
+   'middle-aged' ↔ 'age 18-25': 0.717021
+   ✅ PASS (0.800826 > 0.717021)
+
+📝 Test 16/36: 'middle age'
+   'middle age' ↔ 'age 45-60': 0.782038
+   'middle age' ↔ 'age 15-25': 0.690524
+   ✅ PASS (0.782038 > 0.690524)
+
+📝 Test 17/36: 'midlife'
+   'midlife' ↔ 'age 40-60': 0.755557
+   'midlife' ↔ 'age 20-30': 0.703933
+   ✅ PASS (0.755557 > 0.703933)
+
+📝 Test 18/36: 'forties'
+   'forties' ↔ 'age 40-49': 0.763404
+   'forties' ↔ 'age 15-25': 0.633412
+   ✅ PASS (0.763404 > 0.633412)
+
+📝 Test 19/36: 'fifties'
+   'fifties' ↔ 'age 50-59': 0.748429
+   'fifties' ↔ 'age 18-28': 0.615969
+   ✅ PASS (0.748429 > 0.615969)
+
+📝 Test 20/36: 'old'
+   'old' ↔ 'age 65-80': 0.718797
+   'old' ↔ 'age 15-25': 0.658815
+   ✅ PASS (0.718797 > 0.658815)
+
+📝 Test 21/36: 'elderly'
+   'elderly' ↔ 'age 70-85': 0.777056
+   'elderly' ↔ 'age 20-30': 0.679872
+   ✅ PASS (0.777056 > 0.679872)
+
+📝 Test 22/36: 'senior'
+   'senior' ↔ 'age 65-80': 0.755026
+   'senior' ↔ 'age 15-25': 0.690189
+   ✅ PASS (0.755026 > 0.690189)
+
+📝 Test 23/36: 'senior citizen'
+   'senior citizen' ↔ 'age 65-85': 0.770531
+   'senior citizen' ↔ 'age 18-30': 0.680552
+   ✅ PASS (0.770531 > 0.680552)
+
+📝 Test 24/36: 'aged'
+   'aged' ↔ 'age 70-90': 0.740848
+   'aged' ↔ 'age 15-30': 0.704623
+   ✅ PASS (0.740848 > 0.704623)
+
+📝 Test 25/36: 'retiree'
+   'retiree' ↔ 'age 65-75': 0.708821
+   'retiree' ↔ 'age 20-35': 0.630791
+   ✅ PASS (0.708821 > 0.630791)
+
+📝 Test 26/36: 'pensioner'
+   'pensioner' ↔ 'age 65-80': 0.729757
+   'pensioner' ↔ 'age 18-30': 0.643605
+   ✅ PASS (0.729757 > 0.643605)
+
+📝 Test 27/36: 'golden years'
+   'golden years' ↔ 'age 65-85': 0.691014
+   'golden years' ↔ 'age 20-35': 0.667951
+   ✅ PASS (0.691014 > 0.667951)
+
+📝 Test 28/36: 'older adult'
+   'older adult' ↔ 'age 60-80': 0.793878
+   'older adult' ↔ 'age 18-30': 0.727197
+   ✅ PASS (0.793878 > 0.727197)
+
+📝 Test 29/36: 'geriatric'
+   'geriatric' ↔ 'age 75-90': 0.777842
+   'geriatric' ↔ 'age 20-40': 0.697806
+   ✅ PASS (0.777842 > 0.697806)
+
+📝 Test 30/36: 'adult'
+   'adult' ↔ 'age 25-50': 0.718438
+   'adult' ↔ 'age 5-15': 0.710854
+   ✅ PASS (0.718438 > 0.710854)
+
+📝 Test 31/36: 'grown-up'
+   'grown-up' ↔ 'age 30-55': 0.676245
+   'grown-up' ↔ 'age 8-18': 0.656485
+   ✅ PASS (0.676245 > 0.656485)
+
+📝 Test 32/36: 'mature adult'
+   'mature adult' ↔ 'age 35-60': 0.730537
+   'mature adult' ↔ 'age 10-20': 0.678471
+   ✅ PASS (0.730537 > 0.678471)
+
+📝 Test 33/36: 'thirties'
+   'thirties' ↔ 'age 30-39': 0.782204
+   'thirties' ↔ 'age 60-70': 0.712020
+   ✅ PASS (0.782204 > 0.712020)
+
+📝 Test 34/36: 'sixties'
+   'sixties' ↔ 'age 60-69': 0.736820
+   'sixties' ↔ 'age 20-30': 0.635849
+   ✅ PASS (0.736820 > 0.635849)
+
+📝 Test 35/36: 'seventies'
+   'seventies' ↔ 'age 70-79': 0.744933
+   'seventies' ↔ 'age 18-28': 0.613765
+   ✅ PASS (0.744933 > 0.613765)
+
+📝 Test 36/36: 'eighties'
+   'eighties' ↔ 'age 80-89': 0.732908
+   'eighties' ↔ 'age 20-35': 0.636067
+   ✅ PASS (0.732908 > 0.636067)
+
+======================================================================
+📊 SUMMARY
+======================================================================
+Total Tests:    36
+✅ Passed:      36
+❌ Failed:      0
+Success Rate:   100.0%
+======================================================================
+🎉 Excellent! Hypothesis strongly validated!
+======================================================================

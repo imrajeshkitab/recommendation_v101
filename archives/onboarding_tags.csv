@@ -1,0 +1,40 @@
+Question,Option,Tag List
+Q1: Age Group,1. 16-25 years,"[""young adult"", ""early twenties"", ""college student"", ""career starter""]"
+Q1: Age Group,2. 26-35 years,"[""early career"", ""young professional"", ""building phase"", ""millennial""]"
+Q1: Age Group,3. 36-50 years,"[""mid life"", ""established professional"", ""leadership"", ""experienced""]"
+Q1: Age Group,4. 50+ years,"[""mature wisdom"", ""legacy"", ""retirement"", ""second act""]"
+Q2: Gender,1. Male,[]
+Q2: Gender,2. Female,[]
+Q2: Gender,3. Others,[]
+Q2: Gender,4. Prefer not to say,[]
+Q3: Relationship Status,1. Single,"[""single"", ""independence"", ""solo"", ""self focus""]"
+Q3: Relationship Status,2. In a relationship,"[""dating"", ""partnership"", ""romantic relationship"", ""commitment""]"
+Q3: Relationship Status,3. Married,"[""marriage"", ""spouse"", ""husband"", ""wife"", ""long term partnership""]"
+Q3: Relationship Status,4. Divorced/Widowed,"[""divorce"", ""separation"", ""loss"", ""widowhood"", ""grief"", ""new chapter"", ""starting over""]"
+Q4: Do you have kids?,1. Yes,"[""parenting"", ""parent"", ""children"", ""kids"", ""mother"", ""father"", ""family dynamics"", ""work family balance""]"
+Q4: Do you have kids?,2. No,[]
+Q5: What's on your mind?,1. I want to feel more calm and balanced,"[""calm"", ""peace"", ""balance"", ""tranquility"", ""serenity"", ""inner peace"", ""equilibrium"", ""harmony""]"
+Q5: What's on your mind?,2. I want to be more confident,"[""confidence"", ""self esteem"", ""self worth"", ""assertiveness"", ""bold"", ""courage"", ""empowerment"", ""self belief""]"
+Q5: What's on your mind?,3. I want to improve my relationships,"[""relationships"", ""connection"", ""communication"", ""intimacy"", ""empathy"", ""friendship"", ""bonding"", ""social skills""]"
+Q5: What's on your mind?,4. I want clarity about my life or career,"[""clarity"", ""direction"", ""purpose"", ""life path"", ""career path"", ""goals"", ""focus"", ""vision"", ""calling""]"
+Q5: What's on your mind?,5. I want to grow and be my best self,"[""growth"", ""personal development"", ""transformation"", ""self improvement"", ""potential"", ""evolution"", ""best self"", ""progress""]"
+Q5: What's on your mind?,6. I just love learning new things,"[""learning"", ""knowledge"", ""curiosity"", ""education"", ""discovery"", ""intellectual"", ""wisdom"", ""insights""]"
+Q5: What's on your mind?,7. I'm just exploring,"[""exploration"", ""discovery"", ""open minded"", ""curious"", ""seeking"", ""browsing"", ""wandering""]"
+Q6: What motivates you?,1. Feeling peaceful inside,"[""inner peace"", ""serenity"", ""mindfulness"", ""emotional regulation"", ""stillness"", ""meditation"", ""presence"", ""centered""]"
+Q6: What motivates you?,2. Achieving my goals with less stress,"[""stress management"", ""achievement"", ""productivity"", ""efficiency"", ""performance"", ""success"", ""accomplish"", ""results""]"
+Q6: What motivates you?,3. Discovering who I really am,"[""identity"", ""self discovery"", ""authenticity"", ""true self"", ""values"", ""self awareness"", ""introspection"", ""knowing yourself""]"
+Q6: What motivates you?,4. Being a better friend/partner/parent,"[""interpersonal"", ""empathy"", ""emotional intelligence"", ""compassion"", ""nurturing"", ""supportive"", ""caring"", ""present for others""]"
+Q6: What motivates you?,5. Finding direction and purpose,"[""purpose"", ""meaning"", ""life mission"", ""calling"", ""significance"", ""fulfillment"", ""contribution"", ""north star""]"
+Q6: What motivates you?,6. Making better life choices,"[""decision making"", ""wisdom"", ""judgment"", ""discernment"", ""choices"", ""clarity"", ""critical thinking"", ""navigate""]"
+Q7: How would you relate?,1. I focus on logic," [""analytical"", ""logical"", ""systematic"", ""strategic"", ""planning"", ""rational"", ""data driven"", ""problem solving""]"
+Q7: How would you relate?,2. I'm driven by values,"[""values driven"", ""ethical"", ""empathetic"", ""heart centered"", ""compassion"", ""integrity"", ""moral"", ""emotional""]"
+Q7: How would you relate?,3. I concentrate on details," [""practical"", ""realistic"", ""detail oriented"", ""pragmatic"", ""facts"", ""grounded"", ""actionable"", ""concrete""]"
+Q7: How would you relate?,4. I love exploring new ideas and envision future possibilities,"[""visionary"", ""innovative"", ""creative"", ""future focused"", ""imagination"", ""big picture"", ""possibilities"", ""conceptual""]"
+Q8: Time commitment,1. 5 min – Quick insight & reflection,"[""quick read"", ""bite sized"", ""daily insight"", ""summary"", ""short"", ""brief""]"
+Q8: Time commitment,2. 10 min – A daily story + learning,"[""medium read"", ""story based"", ""narrative"", ""engaging"", ""relatable"", ""accessible""]"
+Q8: Time commitment,3. 15+ min – Deep dive into wisdom,"[""deep dive"", ""comprehensive"", ""thorough"", ""detailed"", ""in depth"", ""immersive""]"
+Q9: Learning style,1. Step by step,"[""step by step"", ""structured"", ""methodical"", ""systematic"", ""gradual"", ""framework"", ""sequential"", ""organized""]"
+Q9: Learning style,2. Give me something exciting and powerful,"[""inspiring"", ""motivational"", ""powerful"", ""transformative"", ""energizing"", ""bold"", ""life changing"", ""impactful""]"
+Q9: Learning style,3. I love deep thinking and reflection,"[""reflective"", ""philosophical"", ""contemplative"", ""introspective"", ""profound"", ""thoughtful"", ""meditative"", ""deep thinking""]"
+Q9: Learning style,4. Just show me what works,"[""actionable"", ""practical tips"", ""how to"", ""results focused"", ""proven"", ""applicable"", ""useful"", ""effective""]"
+
