@@ -168,6 +168,37 @@ def initialize_session_state():
         st.session_state.current_selection = set()
 
 
+def optimize_image_url(url: str, width: int = 200, resize: str = "contain") -> str:
+    """
+    Optimize Supabase image URL using the render/image endpoint with transformation parameters.
+    
+    Transforms:
+    - /storage/v1/object/public/... → /storage/v1/render/image/public/...
+    - Adds query params: ?width=200&resize=contain
+    
+    Args:
+        url: Original image URL
+        width: Desired width in pixels
+        resize: Resize mode (contain, cover, fill)
+    
+    Returns:
+        Optimized URL with render endpoint and query parameters
+    """
+    if not url:
+        return url
+    
+    # Only optimize Supabase URLs
+    if 'supabase.co' in url:
+        # Replace /object with /render/image for image transformation API
+        optimized_url = url.replace('/storage/v1/object/', '/storage/v1/render/image/')
+        
+        # Add transformation parameters
+        separator = '&' if '?' in optimized_url else '?'
+        return f"{optimized_url}{separator}width={width}&resize={resize}"
+    
+    return url
+
+
 def parse_tags_from_csv_format(tags_str: str) -> List[str]:
     """
     Parse tags from CSV format string representation of list.
@@ -329,7 +360,7 @@ def display_recommendations():
         
         with col_img:
             if content['cover_page']:
-                st.image(content['cover_page'], use_container_width=True)
+                st.image(optimize_image_url(content['cover_page']), use_container_width=True)
         
         with col_details:
             st.markdown(f"### {content['title']}")
