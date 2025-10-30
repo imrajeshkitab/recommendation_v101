@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["connection", "communication", "intimacy", "relationship skills", "social bonds", "direction", "purpose", "decision making", "clarity seeking", "personal growth", "self-improvement", "development", "potential", "excellence", "transformation"],
+  "motivation_driver": ["productivity", "efficiency", "goal achievement", "success", "relationships", "connection", "interpersonal skills", "meaning", "life purpose", "direction", "vision", "mission", "clarity", "path finding"],
+  "cognitive_style": ["analytical", "rational", "logical thinker", "strategic", "systematic", "intuitive", "creative", "innovative"],
+  "content_depth": ["moderate commitment", "daily habit", "quick learner", "efficient"],
+  "learning_style": ["methodical", "systematic learner", "energetic", "impact-driven", "dynamic", "transformational", "reflective", "philosophical", "contemplative", "analytical", "introspective", "thoughtful", "practical", "results-oriented", "pragmatic", "action-focused"]
+}

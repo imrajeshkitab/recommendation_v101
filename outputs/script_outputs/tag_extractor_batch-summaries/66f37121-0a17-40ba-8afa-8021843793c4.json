@@ -1,0 +1,87 @@
+{
+  "life_stage_age": [
+    "young adult",
+    "early twenties",
+    "career starter",
+    "emerging adult",
+    "career building"
+  ],
+  "life_stage_relationship": [
+    "dating",
+    "committed",
+    "couple",
+    "romantic bond",
+    "partnered"
+  ],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "self-esteem",
+    "confidence building",
+    "self-assurance",
+    "empowerment",
+    "self-belief",
+    "courage",
+    "direction",
+    "purpose",
+    "life path",
+    "decision making",
+    "clarity seeking",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "potential",
+    "excellence",
+    "transformation"
+  ],
+  "motivation_driver": [
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "introspection",
+    "self-awareness",
+    "meaning",
+    "life purpose",
+    "direction",
+    "vision",
+    "mission",
+    "clarity",
+    "path finding",
+    "goal achievement",
+    "success"
+  ],
+  "cognitive_style": [
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "feeling type",
+    "intuitive",
+    "visionary",
+    "imaginative",
+    "future-focused",
+    "intuitive type"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "energetic",
+    "impact-driven",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

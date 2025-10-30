@@ -1,0 +1,10 @@
+{
+  "life_stage_age": ["mid-career", "family focused", "midlife", "experienced"],
+  "life_stage_relationship": [],
+  "life_stage_parenting": ["parent", "caregiver", "family", "children", "parenting journey", "responsible"],
+  "primary_need": ["connection", "communication", "relationship skills", "empathy", "direction", "clarity seeking", "personal growth", "self-improvement"],
+  "motivation_driver": ["relationships", "caregiving", "empathy", "connection", "support", "interpersonal skills", "direction", "clarity", "path finding"],
+  "cognitive_style": ["analytical", "strategic", "empathetic", "values-driven", "practical", "detail-oriented"],
+  "content_depth": ["quick learner", "efficient", "brief sessions", "micro-learning", "moderate commitment", "daily habit", "consistent"],
+  "learning_style": ["methodical", "systematic learner", "practical", "results-oriented", "pragmatic", "action-focused", "efficient", "no-nonsense"]
+}

@@ -1,0 +1,57 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "peace",
+    "balance",
+    "stress relief",
+    "mental health",
+    "tranquility",
+    "mindfulness",
+    "emotional stability",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "transformation",
+    "knowledge seeker",
+    "lifelong learning"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "mindfulness",
+    "meditation",
+    "stress-free",
+    "harmony",
+    "stress management"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "systematic",
+    "practical",
+    "detail-oriented",
+    "realistic",
+    "concrete"
+  ],
+  "content_depth": [
+    "moderate commitment",
+    "balanced",
+    "daily habit",
+    "consistent",
+    "regular practice"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "transformational",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused",
+    "efficient"
+  ]
+}

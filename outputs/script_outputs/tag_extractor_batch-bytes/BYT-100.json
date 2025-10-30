@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["personal growth", "self-improvement", "development", "potential", "confidence building", "self-belief"],
+  "motivation_driver": ["productivity", "efficiency", "goal achievement", "stress management", "success", "meaning", "direction", "clarity"],
+  "cognitive_style": ["planner", "strategic", "systematic", "practical", "realistic"],
+  "content_depth": ["moderate commitment", "daily habit", "consistent", "regular practice", "dedicated", "committed"],
+  "learning_style": ["methodical", "gradual progress", "systematic learner", "steady growth", "incremental", "practical", "results-oriented", "pragmatic", "action-focused", "efficient"]
+}

@@ -1,0 +1,84 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [
+    "independent",
+    "solo",
+    "unattached",
+    "partnered",
+    "dating",
+    "committed",
+    "couple",
+    "romantic bond",
+    "spouse",
+    "committed partnership",
+    "marital",
+    "life partner",
+    "family unit"
+  ],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey",
+    "responsible"
+  ],
+  "primary_need": [
+    "connection",
+    "communication",
+    "intimacy",
+    "relationship skills",
+    "empathy",
+    "social bonds"
+  ],
+  "motivation_driver": [
+    "relationships",
+    "caregiving",
+    "empathy",
+    "connection",
+    "love",
+    "support",
+    "interpersonal skills"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "planner",
+    "strategic",
+    "systematic",
+    "thinking type",
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "feeling type",
+    "practical",
+    "detail-oriented",
+    "realistic",
+    "concrete"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "patient",
+    "gradual progress",
+    "systematic learner",
+    "steady growth",
+    "incremental",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused",
+    "efficient",
+    "no-nonsense"
+  ]
+}

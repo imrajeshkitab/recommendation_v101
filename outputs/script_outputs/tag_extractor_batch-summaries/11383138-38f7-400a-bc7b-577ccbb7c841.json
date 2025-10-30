@@ -1,0 +1,66 @@
+{
+  "life_stage_age": [
+    "young professional",
+    "career building",
+    "mid-career",
+    "established professional",
+    "millennials"
+  ],
+  "life_stage_relationship": [
+    "partnered",
+    "committed",
+    "couple"
+  ],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "stress relief",
+    "mental health",
+    "tranquility",
+    "emotional stability",
+    "self-improvement",
+    "transformation",
+    "knowledge seeker",
+    "intellectual growth",
+    "clarity seeking"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "mindfulness",
+    "stress-free",
+    "harmony",
+    "stress management",
+    "intentional living",
+    "decision making",
+    "wisdom"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "systematic",
+    "practical",
+    "realistic",
+    "concrete"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "transformational",
+    "reflective",
+    "analytical",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

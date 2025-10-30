@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": ["loss", "grief", "new beginning", "life transition"],
+  "life_stage_parenting": [],
+  "primary_need": ["peace", "balance", "stress relief", "mental health", "tranquility", "mindfulness", "emotional stability", "connection", "communication", "relationship skills", "empathy", "social bonds", "personal growth", "self-improvement", "transformation"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "mindfulness", "harmony", "self-discovery", "authenticity", "introspection", "self-awareness", "relationships", "empathy", "connection", "love", "interpersonal skills"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "compassionate", "feeling type", "moral"],
+  "content_depth": ["moderate commitment", "daily habit", "consistent", "regular practice"],
+  "learning_style": ["reflective", "philosophical", "contemplative", "introspective", "thoughtful", "practical", "results-oriented", "action-focused"]
+}

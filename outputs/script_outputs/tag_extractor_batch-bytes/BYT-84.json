@@ -1,0 +1,10 @@
+{
+  "life_stage_age": ["career starter", "young professional", "career building", "mid-career", "established professional"],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["personal growth", "self-improvement", "development", "potential", "excellence", "connection", "relationship skills", "direction", "purpose", "career guidance", "knowledge seeker", "lifelong learning", "stress relief", "confidence building"],
+  "motivation_driver": ["inner peace", "calm", "stress-free", "self-discovery", "identity", "authenticity", "self-awareness", "relationships", "connection", "interpersonal skills", "meaning", "life purpose", "direction", "clarity", "decision making", "wisdom", "intentional living"],
+  "cognitive_style": ["analytical", "strategic", "empathetic", "values-driven", "ethical", "compassionate", "moral", "intuitive", "visionary", "creative"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning", "moderate commitment", "daily habit", "consistent"],
+  "learning_style": ["energetic", "impact-driven", "dynamic", "transformational", "reflective", "philosophical", "contemplative", "introspective", "thoughtful", "practical", "results-oriented", "pragmatic", "action-focused", "efficient"]
+}

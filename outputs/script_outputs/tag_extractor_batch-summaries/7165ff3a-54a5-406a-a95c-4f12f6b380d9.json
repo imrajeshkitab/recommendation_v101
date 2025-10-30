@@ -1,0 +1,79 @@
+{
+  "life_stage_age": [
+    "career building",
+    "established professional",
+    "early thirties",
+    "midlife"
+  ],
+  "life_stage_relationship": [
+    "partnered",
+    "committed",
+    "couple",
+    "romantic bond",
+    "spouse",
+    "committed partnership",
+    "family unit"
+  ],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey",
+    "responsible"
+  ],
+  "primary_need": [
+    "personal growth",
+    "clarity seeking",
+    "relationships",
+    "calm",
+    "confidence building",
+    "knowledge seeker"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "stress management",
+    "productivity",
+    "goal achievement",
+    "self-discovery",
+    "identity",
+    "purpose",
+    "direction",
+    "relationships",
+    "connection",
+    "decision making",
+    "intentional living"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "planner",
+    "strategic",
+    "systematic",
+    "values-driven",
+    "practical",
+    "detail-oriented",
+    "realistic"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "energetic",
+    "transformational",
+    "reflective",
+    "analytical",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

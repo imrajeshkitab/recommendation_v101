@@ -1,0 +1,74 @@
+{
+  "life_stage_age": [
+    "young adult",
+    "Gen Z",
+    "midlife",
+    "established professional",
+    "experienced",
+    "senior",
+    "wisdom seeker"
+  ],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "calm",
+    "balance",
+    "stress relief",
+    "mental health",
+    "emotional stability",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "potential",
+    "learning",
+    "knowledge seeker",
+    "intellectual growth",
+    "clarity seeking"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "stress-free",
+    "harmony",
+    "productivity",
+    "efficiency",
+    "stress management",
+    "success",
+    "decision making",
+    "wisdom",
+    "judgment"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "systematic",
+    "practical",
+    "detail-oriented",
+    "realistic",
+    "concrete",
+    "sensing type"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "deep thinking",
+    "reflective",
+    "analytical",
+    "practical",
+    "results-oriented",
+    "action-focused",
+    "efficient",
+    "transformational"
+  ]
+}

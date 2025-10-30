@@ -1,0 +1,61 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "connection",
+    "communication",
+    "relationship skills",
+    "social bonds",
+    "personal growth",
+    "self-improvement",
+    "confidence building",
+    "empowerment",
+    "career guidance"
+  ],
+  "motivation_driver": [
+    "relationships",
+    "connection",
+    "empathy",
+    "interpersonal skills",
+    "goal achievement",
+    "success",
+    "decision making",
+    "wisdom",
+    "direction"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "strategic",
+    "systematic",
+    "empathetic",
+    "values-driven",
+    "compassionate",
+    "practical",
+    "realistic"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient",
+    "consistent",
+    "regular practice"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "gradual progress",
+    "energetic",
+    "impact-driven",
+    "transformational",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused",
+    "efficient"
+  ]
+}

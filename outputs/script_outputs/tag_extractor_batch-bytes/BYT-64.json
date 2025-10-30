@@ -1,0 +1,58 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "connection",
+    "personal growth",
+    "self-improvement",
+    "transformation",
+    "knowledge seeker",
+    "intellectual growth",
+    "exploration",
+    "discovery"
+  ],
+  "motivation_driver": [
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "self-awareness",
+    "connection",
+    "meaning",
+    "life purpose",
+    "direction"
+  ],
+  "cognitive_style": [
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "feeling type",
+    "intuitive",
+    "visionary",
+    "creative",
+    "imaginative"
+  ],
+  "content_depth": [
+    "busy",
+    "time-constrained",
+    "quick learner",
+    "efficient",
+    "brief sessions",
+    "micro-learning"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "energetic",
+    "impact-driven",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "action-focused"
+  ]
+}

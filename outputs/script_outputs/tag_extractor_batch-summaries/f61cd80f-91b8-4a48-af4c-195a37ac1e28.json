@@ -1,0 +1,94 @@
+{
+  "life_stage_age": [
+    "career building",
+    "established professional",
+    "family focused",
+    "wisdom seeker",
+    "experienced"
+  ],
+  "life_stage_relationship": [
+    "partnered",
+    "committed",
+    "couple",
+    "spouse",
+    "committed partnership",
+    "marital"
+  ],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey",
+    "responsible"
+  ],
+  "primary_need": [
+    "emotional stability",
+    "stress relief",
+    "self-assurance",
+    "empowerment",
+    "connection",
+    "communication",
+    "relationship skills",
+    "empathy",
+    "purpose",
+    "self-improvement",
+    "development",
+    "transformation",
+    "knowledge seeker",
+    "lifelong learning"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "harmony",
+    "stress management",
+    "productivity",
+    "goal achievement",
+    "self-discovery",
+    "identity",
+    "self-awareness",
+    "relationships",
+    "empathy",
+    "connection",
+    "meaning",
+    "life purpose",
+    "direction",
+    "wisdom",
+    "judgment",
+    "intentional living"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "practical",
+    "detail-oriented",
+    "realistic"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

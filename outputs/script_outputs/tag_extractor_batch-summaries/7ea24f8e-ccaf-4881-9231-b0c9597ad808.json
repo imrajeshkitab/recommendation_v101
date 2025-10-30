@@ -1,0 +1,95 @@
+{
+  "life_stage_age": [
+    "career building",
+    "family focused",
+    "established professional",
+    "midlife",
+    "experienced"
+  ],
+  "life_stage_relationship": [
+    "partnered",
+    "committed",
+    "couple",
+    "romantic bond",
+    "spouse",
+    "committed partnership",
+    "marital",
+    "life partner",
+    "family unit"
+  ],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey"
+  ],
+  "primary_need": [
+    "peace",
+    "balance",
+    "mindfulness",
+    "emotional stability",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "potential",
+    "transformation",
+    "connection",
+    "communication",
+    "relationship skills",
+    "purpose",
+    "life path"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "mindfulness",
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "relationships",
+    "connection",
+    "meaning",
+    "life purpose",
+    "direction",
+    "vision"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "systematic",
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "intuitive",
+    "visionary"
+  ],
+  "content_depth": [
+    "moderate commitment",
+    "daily habit",
+    "consistent",
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "energetic",
+    "impact-driven",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

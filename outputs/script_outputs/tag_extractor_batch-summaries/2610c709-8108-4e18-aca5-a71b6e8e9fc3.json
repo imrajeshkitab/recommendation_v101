@@ -1,0 +1,70 @@
+{
+  "life_stage_age": [
+    "experienced",
+    "wisdom seeker"
+  ],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "personal growth",
+    "transformation",
+    "clarity seeking",
+    "direction",
+    "purpose",
+    "knowledge seeker",
+    "peace",
+    "stress relief",
+    "exploration"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "stress management",
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "purpose",
+    "meaning",
+    "life purpose",
+    "direction",
+    "path finding",
+    "wisdom"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "systematic",
+    "values-driven",
+    "emotional",
+    "feeling type",
+    "practical",
+    "realistic",
+    "intuitive",
+    "visionary",
+    "innovative"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient",
+    "story lover"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "analytical",
+    "introspective",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

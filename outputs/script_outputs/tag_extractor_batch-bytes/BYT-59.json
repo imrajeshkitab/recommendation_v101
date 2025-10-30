@@ -1,0 +1,46 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "personal growth",
+    "self-improvement",
+    "development",
+    "potential",
+    "curiosity",
+    "knowledge seeker",
+    "clarity seeking"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "mindfulness",
+    "self-discovery",
+    "introspection",
+    "self-awareness",
+    "meaning",
+    "life purpose",
+    "direction",
+    "clarity",
+    "decision making",
+    "wisdom"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "intuitive"
+  ],
+  "content_depth": [
+    "moderate commitment",
+    "daily habit",
+    "consistent"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [
+    "committed",
+    "family unit"
+  ],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "peace",
+    "balance",
+    "emotional stability",
+    "personal growth",
+    "transformation",
+    "direction",
+    "purpose",
+    "connection",
+    "relationship skills"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "harmony",
+    "meaning",
+    "life purpose",
+    "direction",
+    "clarity",
+    "relationships",
+    "connection",
+    "self-discovery",
+    "self-awareness"
+  ],
+  "cognitive_style": [
+    "intuitive",
+    "visionary",
+    "values-driven",
+    "emotional",
+    "feeling type"
+  ],
+  "content_depth": [
+    "moderate commitment",
+    "daily habit",
+    "consistent",
+    "dedicated",
+    "wisdom seeker"
+  ],
+  "learning_style": [
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "practical",
+    "action-focused",
+    "transformational"
+  ]
+}

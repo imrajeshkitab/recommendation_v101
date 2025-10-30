@@ -1,0 +1,75 @@
+{
+  "life_stage_age": [
+    "career starter",
+    "young professional",
+    "early thirties",
+    "career building",
+    "mid-career",
+    "established professional",
+    "wisdom seeker"
+  ],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "personal growth",
+    "self-improvement",
+    "potential",
+    "transformation",
+    "excellence",
+    "direction",
+    "purpose",
+    "clarity seeking",
+    "decision making"
+  ],
+  "motivation_driver": [
+    "self-discovery",
+    "self-awareness",
+    "goal achievement",
+    "success",
+    "productivity",
+    "stress management",
+    "purpose",
+    "direction",
+    "meaning",
+    "decision making",
+    "wisdom",
+    "inner peace",
+    "calm",
+    "serenity"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "strategic",
+    "systematic",
+    "planner",
+    "practical",
+    "creative",
+    "innovative",
+    "visionary"
+  ],
+  "content_depth": [
+    "dedicated",
+    "committed",
+    "regular practice",
+    "consistent",
+    "deep learner",
+    "wisdom seeker",
+    "thorough"
+  ],
+  "learning_style": [
+    "transformational",
+    "impact-driven",
+    "methodical",
+    "systematic learner",
+    "practical",
+    "results-oriented",
+    "action-focused",
+    "pragmatic",
+    "reflective",
+    "contemplative",
+    "analytical",
+    "thoughtful"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "life_stage_age": ["family focused"],
+  "life_stage_relationship": [],
+  "life_stage_parenting": ["parent", "caregiver", "family", "children", "parenting journey", "responsible"],
+  "primary_need": ["peace", "balance", "stress relief", "tranquility", "emotional stability", "mental health"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "stress-free", "harmony", "goal achievement", "stress management", "decision making", "intentional living"],
+  "cognitive_style": ["analytical", "rational", "logical thinker", "planner", "strategic", "systematic", "practical", "detail-oriented", "realistic", "concrete", "present-focused"],
+  "content_depth": ["moderate commitment", "daily habit", "consistent"],
+  "learning_style": ["methodical", "patient", "gradual progress", "systematic learner", "steady growth", "incremental", "practical", "results-oriented", "pragmatic", "action-focused", "efficient", "no-nonsense"]
+}

@@ -1,0 +1,84 @@
+{
+  "life_stage_age": [
+    "family focused",
+    "young adult",
+    "Gen Z"
+  ],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey",
+    "responsible"
+  ],
+  "primary_need": [
+    "connection",
+    "communication",
+    "relationship skills",
+    "direction",
+    "clarity seeking",
+    "personal growth",
+    "self-improvement",
+    "transformation",
+    "confidence building",
+    "empowerment"
+  ],
+  "motivation_driver": [
+    "relationships",
+    "caregiving",
+    "empathy",
+    "connection",
+    "love",
+    "support",
+    "interpersonal skills",
+    "meaning",
+    "life purpose",
+    "direction",
+    "path finding",
+    "decision making",
+    "wisdom",
+    "judgment",
+    "intentional living"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "strategic",
+    "systematic",
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "practical",
+    "detail-oriented",
+    "realistic"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "energetic",
+    "impact-driven",
+    "dynamic",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "analytical",
+    "introspective",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused"
+  ]
+}

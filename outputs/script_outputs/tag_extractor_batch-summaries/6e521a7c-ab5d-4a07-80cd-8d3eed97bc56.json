@@ -1,0 +1,88 @@
+{
+  "life_stage_age": [
+    "young adult",
+    "emerging adult",
+    "midlife",
+    "experienced",
+    "wisdom seeker"
+  ],
+  "life_stage_relationship": [
+    "independent",
+    "solo",
+    "self-focused"
+  ],
+  "life_stage_parenting": [
+    "child-free",
+    "independent",
+    "personal freedom"
+  ],
+  "primary_need": [
+    "personal growth",
+    "self-improvement",
+    "transformation",
+    "clarity seeking",
+    "direction",
+    "purpose",
+    "confidence building",
+    "curiosity",
+    "knowledge seeker",
+    "intellectual growth"
+  ],
+  "motivation_driver": [
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "self-awareness",
+    "meaning",
+    "life purpose",
+    "direction",
+    "clarity",
+    "path finding",
+    "decision making",
+    "wisdom",
+    "intentional living"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "logical thinker",
+    "strategic",
+    "systematic",
+    "values-driven",
+    "ethical",
+    "intuitive",
+    "visionary",
+    "creative",
+    "future-focused",
+    "practical",
+    "detail-oriented",
+    "sensing type"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "energetic",
+    "impact-driven",
+    "dynamic",
+    "transformational",
+    "bold",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "analytical",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused"
+  ]
+}

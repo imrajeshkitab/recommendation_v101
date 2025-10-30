@@ -1,0 +1,92 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [
+    "independent",
+    "solo",
+    "unattached",
+    "self-focused"
+  ],
+  "life_stage_parenting": [
+    "childless",
+    "child-free",
+    "independent",
+    "personal freedom",
+    "solo lifestyle"
+  ],
+  "primary_need": [
+    "stress relief",
+    "connection",
+    "communication",
+    "direction",
+    "purpose",
+    "clarity seeking",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "potential",
+    "transformation",
+    "curiosity",
+    "knowledge seeker",
+    "intellectual growth",
+    "exploration",
+    "discovery"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "mindfulness",
+    "stress-free",
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "introspection",
+    "self-awareness",
+    "relationships",
+    "empathy",
+    "connection",
+    "meaning",
+    "life purpose",
+    "direction",
+    "vision",
+    "clarity",
+    "path finding",
+    "decision making",
+    "wisdom",
+    "judgment"
+  ],
+  "cognitive_style": [
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "feeling type",
+    "intuitive",
+    "visionary",
+    "creative",
+    "imaginative",
+    "intuitive type"
+  ],
+  "content_depth": [
+    "busy",
+    "time-constrained",
+    "quick learner",
+    "efficient",
+    "brief sessions",
+    "micro-learning"
+  ],
+  "learning_style": [
+    "energetic",
+    "impact-driven",
+    "dynamic",
+    "transformational",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}

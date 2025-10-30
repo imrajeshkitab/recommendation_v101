@@ -1,0 +1,103 @@
+{
+  "life_stage_age": [
+    "established professional",
+    "midlife",
+    "experienced",
+    "wisdom seeker"
+  ],
+  "life_stage_relationship": [
+    "partnered",
+    "committed partnership",
+    "family unit",
+    "connection",
+    "relationship skills"
+  ],
+  "life_stage_parenting": [
+    "parent",
+    "caregiver",
+    "family",
+    "children",
+    "parenting journey"
+  ],
+  "primary_need": [
+    "peace",
+    "balance",
+    "stress relief",
+    "mental health",
+    "tranquility",
+    "emotional stability",
+    "self-esteem",
+    "confidence building",
+    "empowerment",
+    "self-belief",
+    "connection",
+    "communication",
+    "relationship skills",
+    "direction",
+    "purpose",
+    "clarity seeking",
+    "personal growth",
+    "self-improvement",
+    "transformation",
+    "curiosity",
+    "knowledge seeker",
+    "intellectual growth",
+    "exploration"
+  ],
+  "motivation_driver": [
+    "inner peace",
+    "serenity",
+    "calm",
+    "stress-free",
+    "harmony",
+    "stress management",
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "self-awareness",
+    "relationships",
+    "connection",
+    "interpersonal skills",
+    "meaning",
+    "life purpose",
+    "direction",
+    "clarity",
+    "path finding"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "systematic",
+    "empathetic",
+    "emotional",
+    "compassionate",
+    "practical",
+    "detail-oriented",
+    "realistic",
+    "innovative",
+    "imaginative",
+    "future-focused"
+  ],
+  "content_depth": [
+    "dedicated",
+    "deep learner",
+    "committed",
+    "intensive",
+    "thorough",
+    "wisdom seeker",
+    "patient"
+  ],
+  "learning_style": [
+    "methodical",
+    "systematic learner",
+    "impact-driven",
+    "transformational",
+    "reflective",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "results-oriented",
+    "action-focused"
+  ]
+}
