@@ -77,41 +77,36 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* Content cards */
-    .content-card {
+    /* Recommendation list item */
+    .recommendation-item {
+        display: flex;
+        align-items: center;
         background: white;
         border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+        padding: 1.5rem;
         margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
     }
     
-    .content-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    .recommendation-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
     
-    .content-image {
-        width: 100%;
-        height: 200px;
+    /* Thumbnail image */
+    .recommendation-thumbnail {
+        width: 120px;
+        height: 120px;
         object-fit: cover;
+        border-radius: 8px;
+        margin-right: 1.5rem;
+        flex-shrink: 0;
     }
     
-    .content-info {
-        padding: 1rem;
-    }
-    
-    .content-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
-    }
-    
-    .content-author {
-        font-size: 0.9rem;
-        color: #7f8c8d;
+    /* Content details */
+    .recommendation-details {
+        flex-grow: 1;
     }
     
     .content-category {
@@ -325,31 +320,25 @@ def display_recommendations():
         reverse=True
     )[:TOP_K_RECOMMENDATIONS]
     
-    # Display in grid layout
-    cols_per_row = 3
-    for i in range(0, len(sorted_content), cols_per_row):
-        cols = st.columns(cols_per_row)
+    # Display as vertical list
+    for i, (content_id, score) in enumerate(sorted_content):
+        content = st.session_state.all_content[content_id]
         
-        for j, col in enumerate(cols):
-            if i + j < len(sorted_content):
-                content_id, score = sorted_content[i + j]
-                content = st.session_state.all_content[content_id]
-                
-                with col:
-                    # Content card
-                    if content['cover_page']:
-                        st.image(content['cover_page'], use_container_width=True)
-                    
-                    st.markdown(f"""
-                    <div class="content-info">
-                        <div class="content-title">{content['title']}</div>
-                        <div class="content-author">{content.get('author', '')}</div>
-                        <span class="content-category">{content.get('category', '')}</span>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    
-                    # Optional: Show match score
-                    st.caption(f"Match: {score:.1%}")
+        # Create horizontal layout: image | details
+        col_img, col_details = st.columns([1, 4])
+        
+        with col_img:
+            if content['cover_page']:
+                st.image(content['cover_page'], use_container_width=True)
+        
+        with col_details:
+            st.markdown(f"### {content['title']}")
+            st.markdown(f"**{content.get('author', '')}**")
+            st.markdown(f"<span class='content-category'>{content.get('category', '')}</span>", unsafe_allow_html=True)
+        
+        # Add spacing between items
+        if i < len(sorted_content) - 1:
+            st.markdown("---")
     
     # Start over button
     st.markdown("<br><br>", unsafe_allow_html=True)
