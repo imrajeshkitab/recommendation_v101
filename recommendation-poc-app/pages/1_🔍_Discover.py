@@ -35,17 +35,17 @@ st.markdown("""
     /* Search container */
     .search-container {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: 20px;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     
     .search-title {
         color: white;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 600;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         text-align: center;
     }
     
@@ -68,23 +68,24 @@ st.markdown("""
     /* Content viewer */
     .content-viewer {
         background: white;
-        border-radius: 20px;
-        padding: 2rem;
-        margin-bottom: 2rem;
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
     .content-title {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #2c3e50;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
+        line-height: 1.3;
     }
     
     .content-author {
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: #7f8c8d;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
     }
     
     .content-category {
@@ -110,11 +111,11 @@ st.markdown("""
     
     /* Similar content section */
     .similar-header {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 600;
         color: #2c3e50;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0.8rem;
     }
     
     /* Search result item */
@@ -341,7 +342,7 @@ def display_search_results():
     
     # Display results in a scrollable area
     for content_id, content in st.session_state.search_results.items():
-        col1, col2 = st.columns([1, 5])
+        col1, col2 = st.columns([1, 4])
         
         with col1:
             if content.get('cover_page'):
@@ -351,11 +352,11 @@ def display_search_results():
         
         with col2:
             st.markdown(f"**{content['title']}**")
-            st.markdown(f"*{content.get('author', 'Unknown')}*")
+            st.caption(f"{content.get('author', 'Unknown')}")
             type_badge = content.get('content_type', 'unknown').capitalize()
             st.markdown(f"<span class='content-type-badge'>{type_badge}</span>", unsafe_allow_html=True)
             
-            if st.button(f"View", key=f"view_{content_id}", use_container_width=False):
+            if st.button(f"View", key=f"view_{content_id}", type="secondary"):
                 handle_content_click(content_id)
                 st.rerun()
         
@@ -372,27 +373,32 @@ def display_content_viewer(content_id: str):
     
     st.markdown("<div class='content-viewer'>", unsafe_allow_html=True)
     
-    # Display cover image if available
-    if content.get('cover_page'):
-        col_img, col_spacer = st.columns([2, 3])
-        with col_img:
-            st.image(optimize_image_url(content['cover_page'], width=400), use_container_width=True)
+    # Side-by-side layout: Image left, metadata right
+    col_img, col_meta = st.columns([1, 2])
     
-    # Display title
-    st.markdown(f"<div class='content-title'>{content['title']}</div>", unsafe_allow_html=True)
+    with col_img:
+        # Display cover image if available
+        if content.get('cover_page'):
+            st.image(optimize_image_url(content['cover_page'], width=300), use_container_width=True)
+        else:
+            st.markdown("### 📄")
     
-    # Display author
-    if content.get('author'):
-        st.markdown(f"<div class='content-author'>By {content['author']}</div>", unsafe_allow_html=True)
-    
-    # Display category and content type badges
-    category = content.get('category', 'Uncategorized')
-    content_type = content.get('content_type', 'unknown').capitalize()
-    st.markdown(
-        f"<span class='content-category'>{category}</span>"
-        f"<span class='content-type-badge'>{content_type}</span>",
-        unsafe_allow_html=True
-    )
+    with col_meta:
+        # Display title
+        st.markdown(f"<div class='content-title'>{content['title']}</div>", unsafe_allow_html=True)
+        
+        # Display author
+        if content.get('author'):
+            st.markdown(f"<div class='content-author'>By {content['author']}</div>", unsafe_allow_html=True)
+        
+        # Display category and content type badges
+        category = content.get('category', 'Uncategorized')
+        content_type = content.get('content_type', 'unknown').capitalize()
+        st.markdown(
+            f"<span class='content-category'>{category}</span>"
+            f"<span class='content-type-badge'>{content_type}</span>",
+            unsafe_allow_html=True
+        )
     
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -426,7 +432,7 @@ def display_similar_content(target_content_id: str):
                 
                 with col:
                     # Create a card for each similar item
-                    card_col1, card_col2 = st.columns([1, 3])
+                    card_col1, card_col2 = st.columns([1, 2])
                     
                     with card_col1:
                         if content.get('cover_page'):
@@ -435,8 +441,8 @@ def display_similar_content(target_content_id: str):
                             st.markdown("📄")
                     
                     with card_col2:
-                        st.markdown(f"**{content['title']}**")
-                        st.markdown(f"*{content.get('author', 'Unknown')}*")
+                        st.markdown(f"**{content['title'][:50]}{'...' if len(content['title']) > 50 else ''}**")
+                        st.caption(f"{content.get('author', 'Unknown')}")
                         
                         # Show similarity score
                         score_percent = int(similarity_score * 100)
@@ -445,11 +451,11 @@ def display_similar_content(target_content_id: str):
                             unsafe_allow_html=True
                         )
                         
-                        if st.button("View", key=f"similar_{content_id}", use_container_width=True):
+                        if st.button("View", key=f"similar_{content_id}", type="secondary"):
                             handle_content_click(content_id)
                             st.rerun()
                     
-                    st.markdown("---")
+                    st.markdown("")  # Small spacing
 
 
 def main():
@@ -475,8 +481,6 @@ def main():
     # Display selected content only if not actively searching
     if not st.session_state.search_query and st.session_state.selected_content_id:
         display_content_viewer(st.session_state.selected_content_id)
-        
-        st.markdown("<br>", unsafe_allow_html=True)
         
         # Display similar content
         display_similar_content(st.session_state.selected_content_id)
