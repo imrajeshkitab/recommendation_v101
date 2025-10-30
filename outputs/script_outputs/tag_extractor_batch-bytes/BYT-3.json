@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": ["loss"],
+  "life_stage_parenting": [],
+  "primary_need": ["peace", "stress relief", "mental health", "emotional stability", "connection", "relationship skills", "social bonds", "personal growth", "transformation"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "stress-free", "harmony", "relationships", "empathy", "connection", "support", "interpersonal skills"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "compassionate", "feeling type", "practical", "concrete"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning"],
+  "learning_style": ["practical", "results-oriented", "pragmatic", "action-focused", "efficient"]
+}

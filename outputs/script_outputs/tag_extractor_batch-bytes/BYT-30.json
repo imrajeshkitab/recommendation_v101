@@ -1,0 +1,52 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "connection",
+    "communication",
+    "interpersonal skills",
+    "social bonds",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "transformation"
+  ],
+  "motivation_driver": [
+    "relationships",
+    "empathy",
+    "connection",
+    "love",
+    "interpersonal skills"
+  ],
+  "cognitive_style": [
+    "empathetic",
+    "values-driven",
+    "emotional",
+    "compassionate",
+    "feeling type",
+    "moral"
+  ],
+  "content_depth": [
+    "busy",
+    "time-constrained",
+    "quick learner",
+    "efficient",
+    "brief sessions",
+    "micro-learning"
+  ],
+  "learning_style": [
+    "methodical",
+    "gradual progress",
+    "systematic learner",
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["connection", "relationship skills", "social bonds"],
+  "motivation_driver": ["relationships", "connection", "interpersonal skills", "love"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "feeling type"],
+  "content_depth": ["brief sessions", "quick learner"],
+  "learning_style": ["energetic", "transformational", "practical", "action-focused", "results-oriented"]
+}

@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": ["parent", "caregiver", "family", "children", "parenting journey", "responsible"],
+  "primary_need": ["clarity seeking", "knowledge seeker", "intellectual growth"],
+  "motivation_driver": ["relationships", "connection", "support", "direction", "clarity", "decision making", "wisdom", "judgment"],
+  "cognitive_style": ["analytical", "logical thinker", "systematic", "practical", "detail-oriented", "realistic"],
+  "content_depth": ["moderate commitment", "balanced", "daily habit", "consistent", "story lover", "regular practice"],
+  "learning_style": ["methodical", "systematic learner", "practical", "results-oriented", "action-focused"]
+}

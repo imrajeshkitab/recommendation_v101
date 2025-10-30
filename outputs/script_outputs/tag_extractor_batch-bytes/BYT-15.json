@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": ["partnered", "committed partnership"],
+  "life_stage_parenting": [],
+  "primary_need": ["connection", "communication", "intimacy", "relationship skills", "empathy", "social bonds"],
+  "motivation_driver": ["relationships", "caregiving", "empathy", "connection", "love", "support", "interpersonal skills"],
+  "cognitive_style": ["analytical", "logical thinker", "empathetic", "values-driven", "emotional", "compassionate"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning"],
+  "learning_style": ["methodical", "systematic learner", "practical", "results-oriented", "pragmatic", "action-focused"]
+}

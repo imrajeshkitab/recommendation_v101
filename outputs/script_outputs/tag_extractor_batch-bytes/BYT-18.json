@@ -1,0 +1,10 @@
+{
+  "life_stage_age": ["young professional", "career building", "mid-career", "established professional"],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["peace", "balance", "stress relief", "mental health", "tranquility", "mindfulness", "emotional stability", "personal growth", "self-improvement", "transformation"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "mindfulness", "stress-free", "harmony", "productivity", "stress management", "self-awareness"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "feeling type", "practical"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning", "daily habit", "consistent"],
+  "learning_style": ["practical", "results-oriented", "pragmatic", "action-focused", "efficient", "no-nonsense", "reflective", "contemplative", "introspective"]
+}

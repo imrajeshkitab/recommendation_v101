@@ -1,0 +1,40 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "personal growth",
+    "self-improvement",
+    "confidence building",
+    "self-assurance",
+    "empowerment"
+  ],
+  "motivation_driver": [
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "introspection",
+    "self-awareness"
+  ],
+  "cognitive_style": [
+    "values-driven",
+    "ethical",
+    "moral",
+    "intuitive type"
+  ],
+  "content_depth": [
+    "brief sessions",
+    "micro-learning",
+    "story lover",
+    "daily habit",
+    "consistent",
+    "moderate commitment"
+  ],
+  "learning_style": [
+    "reflective",
+    "philosophical",
+    "contemplative",
+    "introspective",
+    "thoughtful"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "life_stage_age": ["family focused"],
+  "life_stage_relationship": [],
+  "life_stage_parenting": ["parent", "caregiver", "family", "children", "parenting journey", "responsible"],
+  "primary_need": ["connection", "communication", "relationship skills", "personal growth", "self-improvement", "transformation", "direction", "purpose", "clarity seeking"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "stress management", "relationships", "caregiving", "connection", "love", "support", "interpersonal skills", "meaning", "life purpose", "direction", "clarity", "path finding", "decision making", "wisdom", "judgment", "intentional living"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "compassionate", "feeling type", "moral"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning", "daily habit"],
+  "learning_style": ["methodical", "systematic learner", "energetic", "impact-driven", "transformational", "reflective", "contemplative", "introspective", "thoughtful", "practical", "results-oriented", "action-focused"]
+}

@@ -1,0 +1,69 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": [
+    "confidence building",
+    "self-assurance",
+    "empowerment",
+    "self-belief",
+    "courage",
+    "personal growth",
+    "self-improvement",
+    "development",
+    "direction",
+    "decision making"
+  ],
+  "motivation_driver": [
+    "productivity",
+    "goal achievement",
+    "stress management",
+    "success",
+    "self-discovery",
+    "identity",
+    "authenticity",
+    "introspection",
+    "self-awareness",
+    "decision making",
+    "wisdom",
+    "judgment",
+    "intentional living"
+  ],
+  "cognitive_style": [
+    "analytical",
+    "rational",
+    "logical thinker",
+    "planner",
+    "strategic",
+    "systematic",
+    "practical",
+    "detail-oriented",
+    "realistic",
+    "present-focused"
+  ],
+  "content_depth": [
+    "busy",
+    "time-constrained",
+    "quick learner",
+    "efficient",
+    "brief sessions",
+    "micro-learning",
+    "moderate commitment",
+    "daily habit",
+    "consistent"
+  ],
+  "learning_style": [
+    "methodical",
+    "patient",
+    "gradual progress",
+    "systematic learner",
+    "steady growth",
+    "incremental",
+    "practical",
+    "results-oriented",
+    "pragmatic",
+    "action-focused",
+    "efficient",
+    "no-nonsense"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["personal growth", "self-improvement", "development", "potential", "transformation", "curiosity", "knowledge seeker", "intellectual growth", "clarity seeking", "purpose", "direction"],
+  "motivation_driver": ["self-discovery", "identity", "authenticity", "introspection", "self-awareness", "meaning", "life purpose", "direction", "vision", "clarity", "path finding"],
+  "cognitive_style": ["analytical", "rational", "logical thinker", "strategic", "systematic", "thinking type", "intuitive", "visionary", "imaginative", "future-focused"],
+  "content_depth": ["dedicated", "deep learner", "committed", "intensive", "thorough", "wisdom seeker", "patient"],
+  "learning_style": ["methodical", "patient", "gradual progress", "systematic learner", "steady growth", "incremental", "reflective", "philosophical", "contemplative", "analytical", "introspective", "thoughtful"]
+}

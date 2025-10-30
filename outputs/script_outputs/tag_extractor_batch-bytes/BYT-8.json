@@ -1,0 +1,10 @@
+{
+  "life_stage_age": [],
+  "life_stage_relationship": [],
+  "life_stage_parenting": [],
+  "primary_need": ["peace", "balance", "tranquility", "emotional stability", "clarity seeking", "personal growth", "self-improvement", "development", "potential", "transformation"],
+  "motivation_driver": ["inner peace", "serenity", "calm", "mindfulness", "stress-free", "harmony", "self-discovery", "identity", "authenticity", "introspection", "self-awareness", "purpose", "clarity", "wisdom", "judgment", "stress management"],
+  "cognitive_style": ["empathetic", "values-driven", "emotional", "feeling type", "practical", "concrete", "present-focused", "intuitive", "imaginative", "intuitive type"],
+  "content_depth": ["busy", "time-constrained", "quick learner", "efficient", "brief sessions", "micro-learning"],
+  "learning_style": ["methodical", "patient", "gradual progress", "systematic learner", "steady growth", "incremental", "reflective", "philosophical", "contemplative", "analytical", "introspective", "thoughtful", "practical", "results-oriented", "pragmatic", "action-focused"]
+}
