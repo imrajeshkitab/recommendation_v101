@@ -125,12 +125,34 @@ dmypy.json
 .pyre/
 
 # Project specific
-# Logs directory
-logs/
-*.log
+# ==============================================================================
+# Keep directory structure but ignore all files in specific folders
+# ==============================================================================
 
-# Test script outputs
-test/script_outputs/
+# outputs/script_outputs/ - Keep dirs, ignore all files
+outputs/script_outputs/**/*
+!outputs/script_outputs/**/.gitkeep
+!outputs/script_outputs/**/
+
+# database/ - Keep dirs, ignore all files
+database/**/*
+!database/**/.gitkeep
+!database/**/
+
+# archives/ - Keep dirs, ignore all files
+archives/**/*
+!archives/**/.gitkeep
+!archives/**/
+
+# logs/ - Keep dirs, ignore all files
+logs/**/*
+!logs/**/.gitkeep
+!logs/**/
+
+# Test script outputs - Keep dirs, ignore all files
+test/script_outputs/**/*
+!test/script_outputs/**/.gitkeep
+!test/script_outputs/**/
 
 # API keys and credentials
 *.key
