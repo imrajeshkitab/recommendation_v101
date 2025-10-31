@@ -149,7 +149,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-def optimize_image_url(url: str, width: int = 200, resize: str = "contain") -> str:
+def optimize_image_url(url: str, width: int = 380, resize: str = "contain") -> str:
     """
     Optimize Supabase image URL using the render/image endpoint with transformation parameters.
     """
@@ -346,7 +346,7 @@ def display_search_results():
         
         with col1:
             if content.get('cover_page'):
-                st.image(optimize_image_url(content['cover_page'], width=100), use_container_width=True)
+                st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
             else:
                 st.markdown("📄")
         
@@ -379,7 +379,7 @@ def display_content_viewer(content_id: str):
     with col_img:
         # Display cover image if available
         if content.get('cover_page'):
-            st.image(optimize_image_url(content['cover_page'], width=300), use_container_width=True)
+            st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
         else:
             st.markdown("### 📄")
     
@@ -436,7 +436,7 @@ def display_similar_content(target_content_id: str):
                     
                     with card_col1:
                         if content.get('cover_page'):
-                            st.image(optimize_image_url(content['cover_page'], width=100), use_container_width=True)
+                            st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
                         else:
                             st.markdown("📄")
                     
