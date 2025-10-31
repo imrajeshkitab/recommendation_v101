@@ -30,15 +30,26 @@ st.markdown("""
     
     /* Main container styling */
     .main {
-        padding: 2rem;
+        padding: 1rem;
+    }
+    
+    /* Reduce default Streamlit spacing */
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 0rem;
+    }
+    
+    /* Reduce gap between elements */
+    div[data-testid="stVerticalBlock"] > div:has(div.element-container) {
+        gap: 0.5rem;
     }
     
     /* Search container */
     .search-container {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
+        padding: 1.2rem;
         border-radius: 20px;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     
@@ -46,7 +57,7 @@ st.markdown("""
         color: white;
         font-size: 1.8rem;
         font-weight: 600;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
         text-align: center;
     }
     
@@ -71,7 +82,7 @@ st.markdown("""
         background: white;
         border-radius: 12px;
         padding: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     
@@ -97,7 +108,7 @@ st.markdown("""
         border-radius: 15px;
         font-size: 0.75rem;
         font-weight: 500;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
     }
     
     .content-type-badge {
@@ -115,14 +126,14 @@ st.markdown("""
         font-size: 1.5rem;
         font-weight: 600;
         color: #2c3e50;
-        margin-top: 1rem;
-        margin-bottom: 0.8rem;
+        margin-top: 0.8rem;
+        margin-bottom: 0.6rem;
     }
     
     /* Search result item */
     .search-result {
-        padding: 0.5rem;
-        margin-bottom: 0.5rem;
+        padding: 0.4rem;
+        margin-bottom: 0.4rem;
     }
     
     /* Filter chips */
@@ -147,28 +158,25 @@ st.markdown("""
         margin-left: 0.5rem;
     }
     
-    /* Tag badge for extracted tags */
-    .tag-badge {
-        display: inline-block;
-        background: #e8f4f8;
-        color: #2980b9;
-        padding: 0.4rem 0.8rem;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        margin: 0.2rem;
-        font-weight: 500;
+    /* Ensure consistent input height */
+    input[type="text"] {
+        height: 2.5rem !important;
     }
     
-    .tags-container {
-        margin: 0.8rem 0;
-        padding: 0.5rem;
-        background: #f8f9fa;
-        border-radius: 8px;
+    /* Adjust button height to match input */
+    div[data-testid="stButton"] > button {
+        height: 2.5rem;
+        padding: 0.5rem 1rem;
     }
     
-    /* Search mode toggle styling */
-    .search-mode-toggle {
-        margin-bottom: 0.5rem;
+    /* Style the clear button to be smaller and round */
+    button[key="clear_inline"] {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        font-size: 1.2rem !important;
+        line-height: 1 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -312,7 +320,7 @@ def display_unified_search_bar():
             st.rerun()
     
     # Search input based on mode
-    col1, col2 = st.columns([3, 1])
+    col1, col_clear, col2 = st.columns([3, 0.3, 1])
     
     with col1:
         if st.session_state.search_mode == 'title':
@@ -323,13 +331,27 @@ def display_unified_search_bar():
                 key="search_input"
             )
         else:
-            search_input = st.text_area(
+            # Use container to control height
+            search_input = st.text_input(
                 "Your query",
-                placeholder="e.g., I am losing my authority, I want to improve my leadership",
+                placeholder="e.g., I want to be a better parent",
                 label_visibility="collapsed",
-                key="query_input_widget",
-                height=80
+                key="query_input_widget"
             )
+    
+    with col_clear:
+        # Show clear button only when there's an active search
+        if (st.session_state.search_mode == 'title' and st.session_state.search_query) or \
+           (st.session_state.search_mode == 'query' and st.session_state.query_search_input):
+            if st.button("✕", key="clear_inline", use_container_width=True, help="Clear search"):
+                if st.session_state.search_mode == 'title':
+                    st.session_state.search_query = ""
+                    st.session_state.search_results = {}
+                else:
+                    st.session_state.query_search_input = ""
+                    st.session_state.query_search_results = []
+                    st.session_state.query_extracted_tags = []
+                st.rerun()
     
     with col2:
         if st.button("🔍 Search", use_container_width=True, type="primary", key="search_btn"):
@@ -354,8 +376,7 @@ def display_unified_search_bar():
                 else:
                     st.warning("Please enter a search term")
     
-    # Filter checkboxes
-    st.markdown("**Filter by content type:**")
+    # Filter checkboxes - directly below search without label
     col_f1, col_f2, col_f3 = st.columns([1, 1, 1])
     
     # Track filter changes
@@ -399,26 +420,19 @@ def display_search_results():
     """Display search results if any."""
     # Show search status
     if st.session_state.search_query:
-        col_result, col_clear = st.columns([4, 1])
-        with col_result:
-            if st.session_state.search_results:
-                st.markdown(f"### 🔎 Search Results ({len(st.session_state.search_results)} found)")
-            else:
-                st.info(f"🔍 No results found for '{st.session_state.search_query}'. Try different keywords or filters.")
-        
-        with col_clear:
-            if st.button("✕ Clear Search", key="clear_search", use_container_width=True):
-                st.session_state.search_query = ""
-                st.session_state.search_results = {}
-                st.rerun()
+        if st.session_state.search_results:
+            st.markdown(f"### Results ({len(st.session_state.search_results)})")
+        else:
+            st.info(f"No results found for '{st.session_state.search_query}'.")
     
     if not st.session_state.search_results:
         return
     
-    st.markdown("---")
-    
     # Display results in a scrollable area
-    for content_id, content in st.session_state.search_results.items():
+    for i, (content_id, content) in enumerate(st.session_state.search_results.items()):
+        if i > 0:  # Only add separator between items, not before first
+            st.markdown("---")
+            
         col1, col2 = st.columns([1, 4])
         
         with col1:
@@ -436,8 +450,6 @@ def display_search_results():
             if st.button(f"View", key=f"view_{content_id}", type="secondary"):
                 handle_content_click(content_id)
                 st.rerun()
-        
-        st.markdown("---")
 
 
 def perform_query_search(query: str):
@@ -480,43 +492,24 @@ def perform_query_search(query: str):
 
 
 def display_query_search_results():
-    """Display query search results with extracted tags and ranked content."""
+    """Display query search results with ranked content."""
     # Show search status
     if st.session_state.query_search_input:
-        col_result, col_clear = st.columns([4, 1])
-        with col_result:
-            if st.session_state.query_search_results:
-                st.markdown(f"### 🎯 Query Results ({len(st.session_state.query_search_results)} found)")
-            else:
-                st.info(f"🔍 No matching content found for your query. Try different keywords or filters.")
-        
-        with col_clear:
-            if st.button("✕ Clear Query", key="clear_query_search", use_container_width=True):
-                st.session_state.query_search_input = ""
-                st.session_state.query_search_results = []
-                st.session_state.query_extracted_tags = []
-                st.rerun()
+        if st.session_state.query_search_results:
+            st.markdown(f"### Results ({len(st.session_state.query_search_results)})")
+        else:
+            st.info(f"No matching content found. Try different keywords or filters.")
     
     if not st.session_state.query_search_results:
         return
     
-    # Display extracted tags
-    if st.session_state.query_extracted_tags:
-        st.markdown("**📌 Detected Tags:**")
-        tags_html = "<div class='tags-container'>"
-        for tag in st.session_state.query_extracted_tags[:15]:  # Show first 15 tags
-            tags_html += f"<span class='tag-badge'>{tag}</span>"
-        if len(st.session_state.query_extracted_tags) > 15:
-            tags_html += f"<span class='tag-badge'>+{len(st.session_state.query_extracted_tags) - 15} more</span>"
-        tags_html += "</div>"
-        st.markdown(tags_html, unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    # Display ranked results
-    for content_id, score in st.session_state.query_search_results:
+    # Display ranked results directly without tags
+    for i, (content_id, score) in enumerate(st.session_state.query_search_results):
         if content_id not in st.session_state.all_discovery_content:
             continue
+        
+        if i > 0:  # Only add separator between items
+            st.markdown("---")
         
         content = st.session_state.all_discovery_content[content_id]
         
@@ -544,8 +537,6 @@ def display_query_search_results():
             if st.button("View", key=f"view_query_{content_id}", type="secondary"):
                 handle_content_click(content_id)
                 st.rerun()
-        
-        st.markdown("---")
 
 
 def display_content_viewer(content_id: str):
@@ -639,8 +630,6 @@ def display_similar_content(target_content_id: str):
                         if st.button("View", key=f"similar_{content_id}", type="secondary"):
                             handle_content_click(content_id)
                             st.rerun()
-                    
-                    st.markdown("")  # Small spacing
 
 
 def main():
@@ -660,10 +649,6 @@ def main():
         display_search_results()
     elif st.session_state.search_mode == 'query' and st.session_state.query_search_input:
         display_query_search_results()
-    
-    # Show separator before content viewer
-    if not st.session_state.search_query and not st.session_state.query_search_input:
-        st.markdown("---")
     
     # Display selected content only if not actively searching
     if not st.session_state.search_query and not st.session_state.query_search_input:
