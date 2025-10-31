@@ -168,13 +168,13 @@ def initialize_session_state():
         st.session_state.current_selection = set()
 
 
-def optimize_image_url(url: str, width: int = 200, resize: str = "contain") -> str:
+def optimize_image_url(url: str, width: int = 380, resize: str = "contain") -> str:
     """
     Optimize Supabase image URL using the render/image endpoint with transformation parameters.
     
     Transforms:
     - /storage/v1/object/public/... → /storage/v1/render/image/public/...
-    - Adds query params: ?width=200&resize=contain
+    - Adds query params: ?width=380&resize=contain
     
     Args:
         url: Original image URL
