@@ -68,45 +68,45 @@ st.markdown("""
     /* Content viewer */
     .content-viewer {
         background: white;
-        border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     
     .content-title {
-        font-size: 1.8rem;
-        font-weight: 700;
+        font-size: 1.3rem;
+        font-weight: 600;
         color: #2c3e50;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.25rem;
         line-height: 1.3;
     }
     
     .content-author {
-        font-size: 1rem;
+        font-size: 0.85rem;
         color: #7f8c8d;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.5rem;
     }
     
     .content-category {
         display: inline-block;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #667eea;
         color: white;
-        padding: 0.5rem 1.2rem;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
     }
     
     .content-type-badge {
         display: inline-block;
         background: #e8f4f8;
         color: #2980b9;
-        padding: 0.3rem 0.8rem;
-        border-radius: 15px;
-        font-size: 0.85rem;
-        margin-left: 0.5rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        margin-left: 0.4rem;
     }
     
     /* Similar content section */
@@ -373,13 +373,13 @@ def display_content_viewer(content_id: str):
     
     st.markdown("<div class='content-viewer'>", unsafe_allow_html=True)
     
-    # Side-by-side layout: Image left, metadata right
-    col_img, col_meta = st.columns([1, 2])
+    # Side-by-side layout: Image left, metadata right (compact ratio)
+    col_img, col_meta = st.columns([1, 3])
     
     with col_img:
         # Display cover image if available
         if content.get('cover_page'):
-            st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
+            st.image(optimize_image_url(content['cover_page'], width=280), use_container_width=True)
         else:
             st.markdown("### 📄")
     
