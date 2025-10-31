@@ -9,6 +9,7 @@ from typing import Dict, List, Optional
 
 from modules.db_client import get_db_client
 from modules.content_similarity import find_similar_content
+from modules.query_search import extract_tags_from_query, rank_content_by_tags
 
 
 # Page Configuration
@@ -145,6 +146,34 @@ st.markdown("""
         font-weight: 600;
         margin-left: 0.5rem;
     }
+    
+    /* Query search section */
+    .query-search-header {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Tag badge for extracted tags */
+    .tag-badge {
+        display: inline-block;
+        background: #e8f4f8;
+        color: #2980b9;
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        margin: 0.2rem;
+        font-weight: 500;
+    }
+    
+    .tags-container {
+        margin: 0.8rem 0;
+        padding: 0.5rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -190,6 +219,16 @@ def initialize_discovery_state():
     
     if 'active_filters' not in st.session_state:
         st.session_state.active_filters = ['bytes', 'summaries', 'journeys']
+    
+    # Query search session state
+    if 'query_search_input' not in st.session_state:
+        st.session_state.query_search_input = ""
+    
+    if 'query_search_results' not in st.session_state:
+        st.session_state.query_search_results = []
+    
+    if 'query_extracted_tags' not in st.session_state:
+        st.session_state.query_extracted_tags = []
 
 
 def handle_content_click(content_id: str):
@@ -197,6 +236,9 @@ def handle_content_click(content_id: str):
     st.session_state.selected_content_id = content_id
     st.session_state.search_query = ""
     st.session_state.search_results = {}
+    st.session_state.query_search_input = ""
+    st.session_state.query_search_results = []
+    st.session_state.query_extracted_tags = []
 
 
 def get_random_content_from_filters(filters: List[str]) -> Optional[str]:
@@ -363,6 +405,140 @@ def display_search_results():
         st.markdown("---")
 
 
+def perform_query_search(query: str):
+    """Execute query-based search using tag extraction and ranking."""
+    if not query or not query.strip():
+        st.warning("Please enter a query to search.")
+        return
+    
+    if not st.session_state.active_filters:
+        st.warning("Please select at least one filter.")
+        return
+    
+    try:
+        with st.spinner("🤖 Analyzing your query and finding relevant content..."):
+            # Extract tags from query
+            extracted_tags = extract_tags_from_query(query)
+            
+            if not extracted_tags:
+                st.error("Failed to extract tags from your query. Please try again or rephrase your query.")
+                return
+            
+            # Store extracted tags
+            st.session_state.query_extracted_tags = extracted_tags
+            
+            # Rank content by tags
+            ranked_results = rank_content_by_tags(
+                query_tags=extracted_tags,
+                all_content=st.session_state.all_discovery_content,
+                filters=st.session_state.active_filters
+            )
+            
+            # Store results
+            st.session_state.query_search_results = ranked_results
+            st.session_state.query_search_input = query
+            
+    except Exception as e:
+        st.error(f"An error occurred during search: {str(e)}")
+        st.session_state.query_search_results = []
+        st.session_state.query_extracted_tags = []
+
+
+def display_query_search_bar():
+    """Display the query-based search bar."""
+    st.markdown("---")
+    st.markdown("<div class='query-search-header'>🤖 Smart Query Search</div>", unsafe_allow_html=True)
+    st.caption("Describe what you're looking for in natural language")
+    
+    col_query, col_search = st.columns([3, 1])
+    
+    with col_query:
+        query_input = st.text_area(
+            "Your query",
+            placeholder="e.g., I am losing my authority, I want to improve my leadership",
+            label_visibility="collapsed",
+            key="query_input_widget",
+            height=80
+        )
+    
+    with col_search:
+        if st.button("🔍 Find Content", type="primary", use_container_width=True, key="query_search_btn"):
+            if query_input.strip():
+                perform_query_search(query_input)
+                st.rerun()
+            else:
+                st.warning("Please enter a query to search.")
+
+
+def display_query_search_results():
+    """Display query search results with extracted tags and ranked content."""
+    # Show search status
+    if st.session_state.query_search_input:
+        col_result, col_clear = st.columns([4, 1])
+        with col_result:
+            if st.session_state.query_search_results:
+                st.markdown(f"### 🎯 Query Results ({len(st.session_state.query_search_results)} found)")
+            else:
+                st.info(f"🔍 No matching content found for your query. Try different keywords or filters.")
+        
+        with col_clear:
+            if st.button("✕ Clear Query", key="clear_query_search", use_container_width=True):
+                st.session_state.query_search_input = ""
+                st.session_state.query_search_results = []
+                st.session_state.query_extracted_tags = []
+                st.rerun()
+    
+    if not st.session_state.query_search_results:
+        return
+    
+    # Display extracted tags
+    if st.session_state.query_extracted_tags:
+        st.markdown("**📌 Detected Tags:**")
+        tags_html = "<div class='tags-container'>"
+        for tag in st.session_state.query_extracted_tags[:15]:  # Show first 15 tags
+            tags_html += f"<span class='tag-badge'>{tag}</span>"
+        if len(st.session_state.query_extracted_tags) > 15:
+            tags_html += f"<span class='tag-badge'>+{len(st.session_state.query_extracted_tags) - 15} more</span>"
+        tags_html += "</div>"
+        st.markdown(tags_html, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Display ranked results
+    for content_id, score in st.session_state.query_search_results:
+        if content_id not in st.session_state.all_discovery_content:
+            continue
+        
+        content = st.session_state.all_discovery_content[content_id]
+        
+        col1, col2 = st.columns([1, 4])
+        
+        with col1:
+            if content.get('cover_page'):
+                st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
+            else:
+                st.markdown("📄")
+        
+        with col2:
+            st.markdown(f"**{content['title']}**")
+            st.caption(f"{content.get('author', 'Unknown')}")
+            
+            # Show content type and match score
+            type_badge = content.get('content_type', 'unknown').capitalize()
+            score_percent = int(score * 100)
+            st.markdown(
+                f"<span class='content-type-badge'>{type_badge}</span>"
+                f"<span class='similarity-score'>{score_percent}% Match</span>",
+                unsafe_allow_html=True
+            )
+            
+            if st.button("View", key=f"view_query_{content_id}", type="secondary"):
+                handle_content_click(content_id)
+                st.rerun()
+        
+        st.markdown("---")
+
+
 def display_content_viewer(content_id: str):
     """Display the selected content item."""
     if not content_id or content_id not in st.session_state.all_discovery_content:
@@ -467,25 +643,33 @@ def main():
         st.error("❌ No content found in database. Please check your MongoDB connection.")
         return
     
-    # Display search bar
+    # Display title search bar
     display_search_bar()
     
-    # Display search results if searching (even if empty to show "no results" message)
+    # Display title search results if searching (even if empty to show "no results" message)
     if st.session_state.search_query:
         display_search_results()
     
-    # Show separator if not searching or if search has results
-    if not st.session_state.search_query or st.session_state.search_results:
+    # Display query search bar (always visible)
+    display_query_search_bar()
+    
+    # Display query search results if query searching
+    if st.session_state.query_search_input:
+        display_query_search_results()
+    
+    # Show separator before content viewer
+    if not st.session_state.search_query and not st.session_state.query_search_input:
         st.markdown("---")
     
     # Display selected content only if not actively searching
-    if not st.session_state.search_query and st.session_state.selected_content_id:
-        display_content_viewer(st.session_state.selected_content_id)
-        
-        # Display similar content
-        display_similar_content(st.session_state.selected_content_id)
-    elif not st.session_state.search_query:
-        st.info("👆 Use the search bar above to find content, or refresh to see a random item.")
+    if not st.session_state.search_query and not st.session_state.query_search_input:
+        if st.session_state.selected_content_id:
+            display_content_viewer(st.session_state.selected_content_id)
+            
+            # Display similar content
+            display_similar_content(st.session_state.selected_content_id)
+        else:
+            st.info("👆 Use the search bars above to find content, or refresh to see a random item.")
 
 
 if __name__ == "__main__":
