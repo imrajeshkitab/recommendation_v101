@@ -38,7 +38,7 @@ st.markdown("""
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         padding: 1.5rem;
         border-radius: 20px;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     
@@ -147,15 +147,6 @@ st.markdown("""
         margin-left: 0.5rem;
     }
     
-    /* Query search section */
-    .query-search-header {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-    }
-    
     /* Tag badge for extracted tags */
     .tag-badge {
         display: inline-block;
@@ -173,6 +164,11 @@ st.markdown("""
         padding: 0.5rem;
         background: #f8f9fa;
         border-radius: 8px;
+    }
+    
+    /* Search mode toggle styling */
+    .search-mode-toggle {
+        margin-bottom: 0.5rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -229,6 +225,10 @@ def initialize_discovery_state():
     
     if 'query_extracted_tags' not in st.session_state:
         st.session_state.query_extracted_tags = []
+    
+    # Search mode toggle
+    if 'search_mode' not in st.session_state:
+        st.session_state.search_mode = 'title'  # 'title' or 'query'
 
 
 def handle_content_click(content_id: str):
@@ -276,35 +276,73 @@ def get_random_content_from_filters(filters: List[str]) -> Optional[str]:
     return None
 
 
-def display_search_bar():
-    """Display search bar with filter options."""
+def display_unified_search_bar():
+    """Display unified search bar with mode toggle and filter options."""
     st.markdown("""
     <div class="search-container">
         <div class="search-title">🔍 Discover Content</div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Search input and filters in columns
+    # Search mode toggle
+    col_mode1, col_mode2 = st.columns([1, 1])
+    with col_mode1:
+        if st.button(
+            "📝 Title Search" if st.session_state.search_mode == 'query' else "✅ Title Search",
+            use_container_width=True,
+            type="primary" if st.session_state.search_mode == 'title' else "secondary",
+            key="toggle_title"
+        ):
+            st.session_state.search_mode = 'title'
+            st.session_state.query_search_input = ""
+            st.session_state.query_search_results = []
+            st.session_state.query_extracted_tags = []
+            st.rerun()
+    
+    with col_mode2:
+        if st.button(
+            "🤖 Smart Query" if st.session_state.search_mode == 'title' else "✅ Smart Query",
+            use_container_width=True,
+            type="primary" if st.session_state.search_mode == 'query' else "secondary",
+            key="toggle_query"
+        ):
+            st.session_state.search_mode = 'query'
+            st.session_state.search_query = ""
+            st.session_state.search_results = {}
+            st.rerun()
+    
+    # Search input based on mode
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        search_query = st.text_input(
-            "Search by title",
-            placeholder="Enter search term...",
-            label_visibility="collapsed",
-            key="search_input"
-        )
+        if st.session_state.search_mode == 'title':
+            search_input = st.text_input(
+                "Search by title",
+                placeholder="Enter search term...",
+                label_visibility="collapsed",
+                key="search_input"
+            )
+        else:
+            search_input = st.text_area(
+                "Your query",
+                placeholder="e.g., I am losing my authority, I want to improve my leadership",
+                label_visibility="collapsed",
+                key="query_input_widget",
+                height=80
+            )
     
     with col2:
         if st.button("🔍 Search", use_container_width=True, type="primary", key="search_btn"):
-            if search_query.strip():
-                # Perform text search
-                st.session_state.search_query = search_query
-                perform_search()
+            if search_input.strip():
+                if st.session_state.search_mode == 'title':
+                    st.session_state.search_query = search_input
+                    perform_search()
+                else:
+                    perform_query_search(search_input)
                 st.rerun()
             else:
                 # Show random content from selected filters
-                if st.session_state.active_filters:
+                if st.session_state.search_mode == 'title' and st.session_state.active_filters:
                     random_content_id = get_random_content_from_filters(st.session_state.active_filters)
                     if random_content_id:
                         st.session_state.selected_content_id = random_content_id
@@ -314,11 +352,11 @@ def display_search_bar():
                     else:
                         st.warning("No content found in selected filters")
                 else:
-                    st.warning("Please select at least one filter or enter a search term")
+                    st.warning("Please enter a search term")
     
     # Filter checkboxes
     st.markdown("**Filter by content type:**")
-    col_f1, col_f2, col_f3, col_f4 = st.columns([1, 1, 1, 3])
+    col_f1, col_f2, col_f3 = st.columns([1, 1, 1])
     
     # Track filter changes
     new_filters = []
@@ -338,9 +376,6 @@ def display_search_bar():
     # Update filters if changed
     if set(new_filters) != set(st.session_state.active_filters):
         st.session_state.active_filters = new_filters
-    
-    # Hint text
-    st.caption("💡 Tip: Leave search empty and click Search to get random content from selected filters")
 
 
 def perform_search():
@@ -442,32 +477,6 @@ def perform_query_search(query: str):
         st.error(f"An error occurred during search: {str(e)}")
         st.session_state.query_search_results = []
         st.session_state.query_extracted_tags = []
-
-
-def display_query_search_bar():
-    """Display the query-based search bar."""
-    st.markdown("---")
-    st.markdown("<div class='query-search-header'>🤖 Smart Query Search</div>", unsafe_allow_html=True)
-    st.caption("Describe what you're looking for in natural language")
-    
-    col_query, col_search = st.columns([3, 1])
-    
-    with col_query:
-        query_input = st.text_area(
-            "Your query",
-            placeholder="e.g., I am losing my authority, I want to improve my leadership",
-            label_visibility="collapsed",
-            key="query_input_widget",
-            height=80
-        )
-    
-    with col_search:
-        if st.button("🔍 Find Content", type="primary", use_container_width=True, key="query_search_btn"):
-            if query_input.strip():
-                perform_query_search(query_input)
-                st.rerun()
-            else:
-                st.warning("Please enter a query to search.")
 
 
 def display_query_search_results():
@@ -643,18 +652,13 @@ def main():
         st.error("❌ No content found in database. Please check your MongoDB connection.")
         return
     
-    # Display title search bar
-    display_search_bar()
+    # Display unified search bar with toggle
+    display_unified_search_bar()
     
-    # Display title search results if searching (even if empty to show "no results" message)
-    if st.session_state.search_query:
+    # Display search results based on mode
+    if st.session_state.search_mode == 'title' and st.session_state.search_query:
         display_search_results()
-    
-    # Display query search bar (always visible)
-    display_query_search_bar()
-    
-    # Display query search results if query searching
-    if st.session_state.query_search_input:
+    elif st.session_state.search_mode == 'query' and st.session_state.query_search_input:
         display_query_search_results()
     
     # Show separator before content viewer
@@ -669,9 +673,8 @@ def main():
             # Display similar content
             display_similar_content(st.session_state.selected_content_id)
         else:
-            st.info("👆 Use the search bars above to find content, or refresh to see a random item.")
+            st.info("👆 Use the search bar above to find content, or refresh to see a random item.")
 
 
 if __name__ == "__main__":
     main()
-
