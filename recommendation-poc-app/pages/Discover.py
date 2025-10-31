@@ -236,8 +236,8 @@ def initialize_discovery_state():
     
     # Search mode toggle
     if 'search_mode' not in st.session_state:
-        st.session_state.search_mode = 'title'  # 'title' or 'query'
-
+        # --- THIS IS THE CHANGED LINE ---
+        st.session_state.search_mode = 'query'  # Changed from 'title' to 'query'
 
 def handle_content_click(content_id: str):
     """Handle click on a content item to display it."""
@@ -292,9 +292,25 @@ def display_unified_search_bar():
     </div>
     """, unsafe_allow_html=True)
     
+    # --- THIS BLOCK IS SWAPPED ---
     # Search mode toggle
     col_mode1, col_mode2 = st.columns([1, 1])
+    
+    # "Smart Query" button is now in col_mode1 (left)
     with col_mode1:
+        if st.button(
+            "🤖 Smart Query" if st.session_state.search_mode == 'title' else "✅ Smart Query",
+            use_container_width=True,
+            type="primary" if st.session_state.search_mode == 'query' else "secondary",
+            key="toggle_query"
+        ):
+            st.session_state.search_mode = 'query'
+            st.session_state.search_query = ""
+            st.session_state.search_results = {}
+            st.rerun()
+
+    # "Title Search" button is now in col_mode2 (right)
+    with col_mode2:
         if st.button(
             "📝 Title Search" if st.session_state.search_mode == 'query' else "✅ Title Search",
             use_container_width=True,
@@ -306,18 +322,7 @@ def display_unified_search_bar():
             st.session_state.query_search_results = []
             st.session_state.query_extracted_tags = []
             st.rerun()
-    
-    with col_mode2:
-        if st.button(
-            "🤖 Smart Query" if st.session_state.search_mode == 'title' else "✅ Smart Query",
-            use_container_width=True,
-            type="primary" if st.session_state.search_mode == 'query' else "secondary",
-            key="toggle_query"
-        ):
-            st.session_state.search_mode = 'query'
-            st.session_state.search_query = ""
-            st.session_state.search_results = {}
-            st.rerun()
+    # --- END OF SWAPPED BLOCK ---
     
     # Search input based on mode
     col1, col_clear, col2 = st.columns([3, 0.3, 1])
@@ -326,7 +331,7 @@ def display_unified_search_bar():
         if st.session_state.search_mode == 'title':
             search_input = st.text_input(
                 "Search by title",
-                placeholder="Enter search term...",
+                placeholder="Enter search term, eg. Title",
                 label_visibility="collapsed",
                 key="search_input"
             )
@@ -397,7 +402,6 @@ def display_unified_search_bar():
     # Update filters if changed
     if set(new_filters) != set(st.session_state.active_filters):
         st.session_state.active_filters = new_filters
-
 
 def perform_search():
     """Execute search and store results."""
