@@ -130,6 +130,80 @@ st.markdown("""
         margin-bottom: 0.6rem;
     }
     
+    /* Similar content cards - matching mockup.html */
+    .similar-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-bottom: 0.5rem;
+    }
+    
+    .similar-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .similar-card-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .similar-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .similar-card-content {
+        padding: 15px;
+    }
+    
+    .similar-card-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0 0 6px 0;
+        line-height: 1.3;
+    }
+    
+    .similar-card-author {
+        font-size: 13px;
+        color: #7f8c8d;
+        margin: 0 0 10px 0;
+    }
+    
+    .similar-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .similar-card-badges {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .similar-match-badge {
+        display: inline-block;
+        background: #2ecc71;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
     /* Search result item */
     .search-result {
         padding: 0.4rem;
@@ -236,7 +310,6 @@ def initialize_discovery_state():
     
     # Search mode toggle
     if 'search_mode' not in st.session_state:
-        # --- THIS IS THE CHANGED LINE ---
         st.session_state.search_mode = 'query'  # Changed from 'title' to 'query'
 
 def handle_content_click(content_id: str):
@@ -292,7 +365,6 @@ def display_unified_search_bar():
     </div>
     """, unsafe_allow_html=True)
     
-    # --- THIS BLOCK IS SWAPPED ---
     # Search mode toggle
     col_mode1, col_mode2 = st.columns([1, 1])
     
@@ -322,7 +394,6 @@ def display_unified_search_bar():
             st.session_state.query_search_results = []
             st.session_state.query_extracted_tags = []
             st.rerun()
-    # --- END OF SWAPPED BLOCK ---
     
     # Search input based on mode
     col1, col_clear, col2 = st.columns([3, 0.3, 1])
@@ -588,11 +659,11 @@ def display_similar_content(target_content_id: str):
     if not target_content_id or target_content_id not in st.session_state.all_discovery_content:
         return
     
-    # Find similar content
+    # Find similar content - get top 6 instead of top 5
     similar_items = find_similar_content(
         target_content_id,
         st.session_state.all_discovery_content,
-        top_k=5
+        top_k=6
     )
     
     if not similar_items:
@@ -601,39 +672,65 @@ def display_similar_content(target_content_id: str):
     
     st.markdown("<div class='similar-header'>✨ Similar Content</div>", unsafe_allow_html=True)
     
-    # Display similar items in a grid
-    for i in range(0, len(similar_items), 2):
-        cols = st.columns(2)
+    # Display cards in 2x3 grid (3 cards per row)
+    max_cards_per_row = 3
+    
+    for row_start in range(0, len(similar_items), max_cards_per_row):
+        row_items = similar_items[row_start:row_start + max_cards_per_row]
+        cols = st.columns(len(row_items))
         
-        for j, col in enumerate(cols):
-            if i + j < len(similar_items):
-                content_id, similarity_score = similar_items[i + j]
-                content = st.session_state.all_discovery_content[content_id]
+        for idx, (content_id, similarity_score) in enumerate(row_items):
+            content = st.session_state.all_discovery_content[content_id]
+            
+            with cols[idx]:
+                # Get image URL
+                image_url = content.get('cover_page', '')
+                if image_url:
+                    image_url = optimize_image_url(image_url, width=320)
                 
-                with col:
-                    # Create a card for each similar item
-                    card_col1, card_col2 = st.columns([1, 2])
-                    
-                    with card_col1:
-                        if content.get('cover_page'):
-                            st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
-                        else:
-                            st.markdown("📄")
-                    
-                    with card_col2:
-                        st.markdown(f"**{content['title'][:50]}{'...' if len(content['title']) > 50 else ''}**")
-                        st.caption(f"{content.get('author', 'Unknown')}")
-                        
-                        # Show similarity score
-                        score_percent = int(similarity_score * 100)
-                        st.markdown(
-                            f"<span class='similarity-score'>{score_percent}% Match</span>",
-                            unsafe_allow_html=True
-                        )
-                        
-                        if st.button("View", key=f"similar_{content_id}", type="secondary"):
-                            handle_content_click(content_id)
-                            st.rerun()
+                # Format data - keep title as single line with ellipsis
+                title = content['title']
+                # No truncation here, let CSS handle it with text-overflow
+                
+                author = content.get('author', 'Unknown')
+                content_type = content.get('content_type', 'unknown').capitalize()
+                score_percent = int(similarity_score * 100)
+                
+                # Build card HTML
+                import html
+                title_escaped = html.escape(title)
+                author_escaped = html.escape(author)
+                
+                image_tag = ''
+                if image_url:
+                    image_tag = f'<img src="{html.escape(image_url)}" alt="{title_escaped}">'
+                else:
+                    image_tag = '<div style="font-size: 48px;">📄</div>'
+                
+                card_html = f'''
+                <div class="similar-card">
+                    <div class="similar-card-image">
+                        {image_tag}
+                    </div>
+                    <div class="similar-card-content">
+                        <h3 class="similar-card-title">{title_escaped}</h3>
+                        <p class="similar-card-author">{author_escaped}</p>
+                        <div class="similar-card-footer">
+                            <div class="similar-card-badges">
+                                <span class="content-type-badge">{content_type}</span>
+                                <span class="similar-match-badge">{score_percent}% Match</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                '''
+                
+                st.markdown(card_html, unsafe_allow_html=True)
+                
+                # Add button directly below the card in the same column
+                if st.button("👁 View", key=f"similar_{content_id}", type="primary", use_container_width=True):
+                    handle_content_click(content_id)
+                    st.rerun()
 
 
 def main():
