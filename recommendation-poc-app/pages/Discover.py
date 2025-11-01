@@ -172,12 +172,18 @@ st.markdown("""
         color: #2c3e50;
         margin: 0 0 6px 0;
         line-height: 1.3;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .similar-card-author {
         font-size: 13px;
         color: #7f8c8d;
         margin: 0 0 10px 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .similar-card-footer {
@@ -688,9 +694,11 @@ def display_similar_content(target_content_id: str):
                 if image_url:
                     image_url = optimize_image_url(image_url, width=320)
                 
-                # Format data - keep title as single line with ellipsis
+                # Format data - truncate title to three words
                 title = content['title']
-                # No truncation here, let CSS handle it with text-overflow
+                words = title.split()
+                if len(words) > 3:
+                    title = ' '.join(words[:3]) + ' ...'
                 
                 author = content.get('author', 'Unknown')
                 content_type = content.get('content_type', 'unknown').capitalize()
