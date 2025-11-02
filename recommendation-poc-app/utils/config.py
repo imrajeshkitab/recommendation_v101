@@ -12,7 +12,7 @@ MONGODB_URL = os.getenv('MONGODB_URL')
 if not MONGODB_URL:
     try:
         import streamlit as st
-        MONGODB_URL = st.secrets.get("MONGODB_URL", None)
+        MONGODB_URL = st.secrets["MONGODB_URL"]
     except (ImportError, FileNotFoundError, KeyError):
         # Streamlit not available or secrets not configured
         pass
