@@ -138,6 +138,55 @@ st.markdown("""
         font-size: 1.2rem;
         color: #7f8c8d;
     }
+    
+    /* Preferences section */
+    .preferences-container {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .preferences-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+    
+    .preferences-subtitle {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin-bottom: 1rem;
+    }
+    
+    .question-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 0.8rem;
+        display: block;
+    }
+    
+    .option-group {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+    }
+    
+    /* Count badge */
+    .count-badge {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -166,6 +215,12 @@ def initialize_session_state():
     
     if 'current_selection' not in st.session_state:
         st.session_state.current_selection = set()
+    
+    if 'show_preferences' not in st.session_state:
+        st.session_state.show_preferences = False
+    
+    if 'temp_responses' not in st.session_state:
+        st.session_state.temp_responses = {}
 
 
 def optimize_image_url(url: str, width: int = 380, resize: str = "contain") -> str:
@@ -261,6 +316,19 @@ def update_user_tags(question: Dict, selected_options: Set[str]):
     )
 
 
+def recalculate_scores_from_responses():
+    """Recalculate all scores from scratch based on current responses."""
+    # Reset accumulated tags
+    st.session_state.accumulated_tags = {}
+    
+    # Reprocess all responses
+    for sequence, selected_options in st.session_state.user_responses.items():
+        # Find the question
+        question = next((q for q in st.session_state.questions if q['sequence'] == sequence), None)
+        if question:
+            update_user_tags(question, set(selected_options))
+
+
 def display_question(question: Dict, question_index: int):
     """Display a single question with options."""
     total_questions = len(st.session_state.questions)
@@ -335,6 +403,107 @@ def handle_next_question(question: Dict):
     st.session_state.current_question += 1
 
 
+def display_preferences_editor():
+    """Display expandable preferences editor."""
+    st.markdown("""
+    <div class="preferences-container">
+        <div class="preferences-title">🎯 Your Preferences</div>
+        <div class="preferences-subtitle">Click to modify your answers and update recommendations</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Toggle button
+    if st.button("⚙️ Modify Preferences" if not st.session_state.show_preferences else "✕ Close Preferences", 
+                 use_container_width=False):
+        st.session_state.show_preferences = not st.session_state.show_preferences
+        if st.session_state.show_preferences:
+            # Initialize temp responses with current responses
+            st.session_state.temp_responses = st.session_state.user_responses.copy()
+        st.rerun()
+    
+    # Show preferences form if expanded
+    if st.session_state.show_preferences:
+        st.markdown("---")
+        
+        # Initialize temp_responses if not exists
+        if not st.session_state.temp_responses:
+            st.session_state.temp_responses = st.session_state.user_responses.copy()
+        
+        # Display all questions with current selections
+        for question in st.session_state.questions:
+            sequence = question['sequence']
+            st.markdown(f"<div class='option-group'>", unsafe_allow_html=True)
+            st.markdown(f"<span class='question-label'>Q{sequence}: {question['question']}</span>", 
+                       unsafe_allow_html=True)
+            
+            options = question.get('options', {})
+            question_type = question.get('type', 'single_choice')
+            current_selections = st.session_state.temp_responses.get(sequence, [])
+            
+            if question_type == 'multiple_choice':
+                # Multiple choice with checkboxes
+                cols = st.columns(2)
+                new_selections = []
+                for idx, (option_num, option_text) in enumerate(options.items()):
+                    with cols[idx % 2]:
+                        checked = st.checkbox(
+                            option_text,
+                            value=option_num in current_selections,
+                            key=f"pref_q{sequence}_opt_{option_num}"
+                        )
+                        if checked:
+                            new_selections.append(option_num)
+                
+                st.session_state.temp_responses[sequence] = new_selections
+            else:
+                # Single choice with radio buttons
+                options_list = list(options.items())
+                option_labels = [text for _, text in options_list]
+                
+                # Find current selection index
+                current_index = 0
+                if current_selections:
+                    for idx, (opt_num, _) in enumerate(options_list):
+                        if opt_num in current_selections:
+                            current_index = idx
+                            break
+                
+                selected_label = st.radio(
+                    "Select one:",
+                    option_labels,
+                    index=current_index,
+                    key=f"pref_q{sequence}_radio",
+                    label_visibility="collapsed"
+                )
+                
+                # Find the option number for selected label
+                for opt_num, opt_text in options_list:
+                    if opt_text == selected_label:
+                        st.session_state.temp_responses[sequence] = [opt_num]
+                        break
+            
+            st.markdown("</div>", unsafe_allow_html=True)
+        
+        # Action buttons
+        st.markdown("<br>", unsafe_allow_html=True)
+        col1, col2, col3 = st.columns([1, 1, 1])
+        
+        with col1:
+            if st.button("✓ Update Recommendations", type="primary", use_container_width=True):
+                # Apply temp responses to actual responses
+                st.session_state.user_responses = st.session_state.temp_responses.copy()
+                # Recalculate all scores
+                recalculate_scores_from_responses()
+                st.session_state.show_preferences = False
+                st.rerun()
+        
+        with col2:
+            if st.button("✕ Cancel", use_container_width=True):
+                st.session_state.show_preferences = False
+                st.session_state.temp_responses = {}
+                st.rerun()
+
+
 def display_recommendations():
     """Display final recommendations."""
     st.markdown("""
@@ -344,12 +513,21 @@ def display_recommendations():
     </div>
     """, unsafe_allow_html=True)
     
+    # Display preferences editor
+    display_preferences_editor()
+    
+    st.markdown("---")
+    
     # Sort content by score
     sorted_content = sorted(
         st.session_state.content_scores.items(),
         key=lambda x: x[1],
         reverse=True
     )[:TOP_K_RECOMMENDATIONS]
+    
+    # Display count
+    st.markdown(f"### 📚 Top {len(sorted_content)} Recommendations for You")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     # Display as vertical list
     for i, (content_id, score) in enumerate(sorted_content):
@@ -378,7 +556,7 @@ def display_recommendations():
         if st.button("🔄 Start Over", use_container_width=True, type="secondary"):
             # Reset session state
             for key in ['current_question', 'user_responses', 'accumulated_tags', 
-                       'content_scores', 'current_selection']:
+                       'content_scores', 'current_selection', 'show_preferences', 'temp_responses']:
                 if key in st.session_state:
                     del st.session_state[key]
             st.rerun()
@@ -412,4 +590,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
