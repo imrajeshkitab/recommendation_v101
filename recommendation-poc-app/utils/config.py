@@ -49,3 +49,14 @@ TAG_CATEGORIES = [
     'learning_style'
 ]
 
+# Category to human-readable label mapping
+CATEGORY_LABELS = {
+    'life_stage_age': 'Q1 Life Stage',
+    'life_stage_relationship': 'Q3 Relationship Status',
+    'life_stage_parenting': 'Q4 Parenting',
+    'primary_need': 'Q5 Primary Need',
+    'motivation_driver': 'Q6 Motivation',
+    'cognitive_style': 'Q7 Cognitive Style',
+    'content_depth': 'Q8 Content Depth',
+    'learning_style': 'Q9 Learning Style'
+}

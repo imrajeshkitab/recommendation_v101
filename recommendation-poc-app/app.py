@@ -8,10 +8,11 @@ from typing import Dict, List, Set
 import ast
 
 from modules.db_client import get_db_client
-from modules.scoring import calculate_all_content_scores
+from modules.scoring import calculate_all_content_scores, calculate_all_content_scores_with_details
 from utils.config import (
     QUESTION_TAG_MAPPING, 
-    TOP_K_RECOMMENDATIONS
+    TOP_K_RECOMMENDATIONS,
+    CATEGORY_LABELS
 )
 
 
@@ -119,46 +120,12 @@ st.markdown("""
         margin-top: 0.5rem;
     }
     
-    /* Recommendations header */
-    .recommendations-header {
-        text-align: center;
-        padding: 2rem 0;
-    }
-    
-    .recommendations-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-    }
-    
-    .recommendations-subtitle {
-        font-size: 1.2rem;
-        color: #7f8c8d;
-    }
-    
-    /* Preferences section */
-    .preferences-container {
-        background: #f8f9fa;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    
-    .preferences-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
-    }
-    
-    .preferences-subtitle {
-        font-size: 0.9rem;
-        color: #7f8c8d;
-        margin-bottom: 1rem;
+    /* Compact button styling */
+    div[data-testid="stButton"] > button {
+        padding: 0.4rem 1rem !important;
+        font-size: 0.9rem !important;
+        height: auto !important;
+        min-height: 2rem !important;
     }
     
     .question-label {
@@ -187,6 +154,42 @@ st.markdown("""
         font-weight: 600;
         margin-left: 0.5rem;
     }
+    
+    /* Match badges */
+    .match-badges-container {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .overall-match-badge {
+        display: inline-flex;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        width: fit-content;
+    }
+    
+    .best-match-badge {
+        display: inline-flex;
+        align-items: center;
+        background: #ff6b6b;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        width: fit-content;
+    }
+    
+    .match-icon {
+        margin-right: 0.5rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -204,6 +207,9 @@ def initialize_session_state():
     
     if 'content_scores' not in st.session_state:
         st.session_state.content_scores = {}
+    
+    if 'detailed_content_scores' not in st.session_state:
+        st.session_state.detailed_content_scores = {}
     
     if 'questions' not in st.session_state:
         db_client = get_db_client()
@@ -309,8 +315,13 @@ def update_user_tags(question: Dict, selected_options: Set[str]):
     
     st.session_state.accumulated_tags[tag_field].extend(all_tags)
     
-    # Recalculate scores for all content
+    # Recalculate scores for all content (both regular and detailed)
     st.session_state.content_scores = calculate_all_content_scores(
+        st.session_state.accumulated_tags,
+        st.session_state.all_content
+    )
+    
+    st.session_state.detailed_content_scores = calculate_all_content_scores_with_details(
         st.session_state.accumulated_tags,
         st.session_state.all_content
     )
@@ -403,18 +414,15 @@ def handle_next_question(question: Dict):
     st.session_state.current_question += 1
 
 
-def display_preferences_editor():
-    """Display expandable preferences editor."""
-    st.markdown("""
-    <div class="preferences-container">
-        <div class="preferences-title">🎯 Your Preferences</div>
-        <div class="preferences-subtitle">Click to modify your answers and update recommendations</div>
-    </div>
-    """, unsafe_allow_html=True)
+def display_recommendations():
+    """Display final recommendations."""
+    # Simple title without extra container/spacing
+    st.markdown("## ✨ Your Personalized Recommendations")
     
-    # Toggle button
+    # Compact preferences button (no container box)
     if st.button("⚙️ Modify Preferences" if not st.session_state.show_preferences else "✕ Close Preferences", 
-                 use_container_width=False):
+                 use_container_width=False,
+                 key="modify_prefs_btn"):
         st.session_state.show_preferences = not st.session_state.show_preferences
         if st.session_state.show_preferences:
             # Initialize temp responses with current responses
@@ -502,21 +510,8 @@ def display_preferences_editor():
                 st.session_state.show_preferences = False
                 st.session_state.temp_responses = {}
                 st.rerun()
-
-
-def display_recommendations():
-    """Display final recommendations."""
-    st.markdown("""
-    <div class="recommendations-header">
-        <div class="recommendations-title">✨ Your Personalized Recommendations</div>
-        <div class="recommendations-subtitle">Curated just for you based on your preferences</div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Display preferences editor
-    display_preferences_editor()
-    
-    st.markdown("---")
+        
+        st.markdown("---")
     
     # Sort content by score
     sorted_content = sorted(
@@ -525,13 +520,13 @@ def display_recommendations():
         reverse=True
     )[:TOP_K_RECOMMENDATIONS]
     
-    # Display count
+    # Display count - more compact
     st.markdown(f"### 📚 Top {len(sorted_content)} Recommendations for You")
-    st.markdown("<br>", unsafe_allow_html=True)
     
     # Display as vertical list
     for i, (content_id, score) in enumerate(sorted_content):
         content = st.session_state.all_content[content_id]
+        detailed_score = st.session_state.detailed_content_scores.get(content_id, {})
         
         # Create horizontal layout: image | details
         col_img, col_details = st.columns([1, 4])
@@ -544,6 +539,29 @@ def display_recommendations():
             st.markdown(f"### {content['title']}")
             st.markdown(f"**{content.get('author', '')}**")
             st.markdown(f"<span class='content-category'>{content.get('category', '')}</span>", unsafe_allow_html=True)
+            
+            # Display match badges
+            overall_score = detailed_score.get('overall_score', score)
+            best_match_category = detailed_score.get('best_match_category')
+            best_match_score = detailed_score.get('best_match_score', 0.0)
+            
+            # Overall match percentage
+            overall_percentage = int(overall_score * 100)
+            
+            # Best match category label
+            best_match_label = CATEGORY_LABELS.get(best_match_category, best_match_category) if best_match_category else 'N/A'
+            best_match_percentage = int(best_match_score * 100)
+            
+            st.markdown(f"""
+            <div class="match-badges-container">
+                <div class="overall-match-badge">
+                    <span class="match-icon">📊</span> Overall Match {overall_percentage}% 
+                </div>
+                <div class="best-match-badge">
+                    Best Match: {best_match_label} ({best_match_percentage}%)
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
         
         # Add spacing between items
         if i < len(sorted_content) - 1:
@@ -556,7 +574,7 @@ def display_recommendations():
         if st.button("🔄 Start Over", use_container_width=True, type="secondary"):
             # Reset session state
             for key in ['current_question', 'user_responses', 'accumulated_tags', 
-                       'content_scores', 'current_selection', 'show_preferences', 'temp_responses']:
+                       'content_scores', 'detailed_content_scores', 'current_selection', 'show_preferences', 'temp_responses']:
                 if key in st.session_state:
                     del st.session_state[key]
             st.rerun()
