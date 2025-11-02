@@ -408,7 +408,7 @@ def display_unified_search_bar():
         if st.session_state.search_mode == 'title':
             search_input = st.text_input(
                 "Search by title",
-                placeholder="Enter search term, eg. Title",
+                placeholder="Enter content title eg. Atomic habits",
                 label_visibility="collapsed",
                 key="search_input"
             )
