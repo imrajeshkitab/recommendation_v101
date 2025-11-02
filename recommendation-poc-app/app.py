@@ -489,7 +489,7 @@ def display_preferences_editor():
         col1, col2, col3 = st.columns([1, 1, 1])
         
         with col1:
-            if st.button("✓ Update Recommendations", type="primary", use_container_width=True):
+            if st.button("✓ Update Recommendations", use_container_width=True):
                 # Apply temp responses to actual responses
                 st.session_state.user_responses = st.session_state.temp_responses.copy()
                 # Recalculate all scores
