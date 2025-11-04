@@ -34,19 +34,3 @@ Have you ever finished a great book and wished you could find another one just l
 4.  **Showing You Similar Content**: The content with the highest number of matching keywords is then recommended to you as "similar content".
 
 **In a nutshell**: We find content with similar themes and topics by matching their keywords.
-
-## 3. Search That Understands You
-
-Our search bar is more than just a simple keyword search. It tries to understand what you're really looking for.
-
-### How It Works
-
-1.  **You Type in What You're Looking For**: You can type in a full sentence, like "I want to find more peace in my life" or "How can I be a better leader?".
-
-2.  **Our Smart System Analyzes Your Words**: We use a powerful AI (Artificial Intelligence) to read your sentence and pull out the main ideas and keywords. For "I want to find more peace in my life," it might identify keywords like "peace," "stress relief," and "mindfulness."
-
-3.  **Matching Keywords to Content**: Once we have these keywords, we use the same matching game as before. We look for content in our library that has these keywords.
-
-4.  **Presenting the Best Matches**: The content that best matches the keywords from your search is shown to you as the search results.
-
-**In a nutshell**: You tell us what you need in your own words, and our smart search finds content that addresses those needs.
