@@ -9,7 +9,7 @@ from typing import Dict, List, Optional
 
 from modules.db_client import get_db_client
 from modules.content_similarity import find_similar_content
-from modules.query_search import extract_tags_from_query, rank_content_by_tags
+# Query-based search removed
 
 
 # Page Configuration
@@ -304,28 +304,13 @@ def initialize_discovery_state():
     if 'active_filters' not in st.session_state:
         st.session_state.active_filters = ['bytes', 'summaries', 'journeys']
     
-    # Query search session state
-    if 'query_search_input' not in st.session_state:
-        st.session_state.query_search_input = ""
-    
-    if 'query_search_results' not in st.session_state:
-        st.session_state.query_search_results = []
-    
-    if 'query_extracted_tags' not in st.session_state:
-        st.session_state.query_extracted_tags = []
-    
-    # Search mode toggle
-    if 'search_mode' not in st.session_state:
-        st.session_state.search_mode = 'query'  # Changed from 'title' to 'query'
+    # Query-based search state removed; title-only search
 
 def handle_content_click(content_id: str):
     """Handle click on a content item to display it."""
     st.session_state.selected_content_id = content_id
     st.session_state.search_query = ""
     st.session_state.search_results = {}
-    st.session_state.query_search_input = ""
-    st.session_state.query_search_results = []
-    st.session_state.query_extracted_tags = []
 
 
 def get_random_content_from_filters(filters: List[str]) -> Optional[str]:
@@ -364,89 +349,41 @@ def get_random_content_from_filters(filters: List[str]) -> Optional[str]:
 
 
 def display_unified_search_bar():
-    """Display unified search bar with mode toggle and filter options."""
+    """Display search bar (title-only) with filter options."""
     st.markdown("""
     <div class="search-container">
         <div class="search-title">🔍 Discover Content</div>
     </div>
     """, unsafe_allow_html=True)
     
-    # Search mode toggle
-    col_mode1, col_mode2 = st.columns([1, 1])
-    
-    # "Smart Query" button is now in col_mode1 (left)
-    with col_mode1:
-        if st.button(
-            "🤖 Smart Query" if st.session_state.search_mode == 'title' else "✅ Smart Query",
-            use_container_width=True,
-            type="primary" if st.session_state.search_mode == 'query' else "secondary",
-            key="toggle_query"
-        ):
-            st.session_state.search_mode = 'query'
-            st.session_state.search_query = ""
-            st.session_state.search_results = {}
-            st.rerun()
-
-    # "Title Search" button is now in col_mode2 (right)
-    with col_mode2:
-        if st.button(
-            "📝 Title Search" if st.session_state.search_mode == 'query' else "✅ Title Search",
-            use_container_width=True,
-            type="primary" if st.session_state.search_mode == 'title' else "secondary",
-            key="toggle_title"
-        ):
-            st.session_state.search_mode = 'title'
-            st.session_state.query_search_input = ""
-            st.session_state.query_search_results = []
-            st.session_state.query_extracted_tags = []
-            st.rerun()
-    
-    # Search input based on mode
+    # Search input
     col1, col_clear, col2 = st.columns([3, 0.3, 1])
     
     with col1:
-        if st.session_state.search_mode == 'title':
-            search_input = st.text_input(
-                "Search by title",
-                placeholder="Enter content title eg. Atomic habits",
-                label_visibility="collapsed",
-                key="search_input"
-            )
-        else:
-            # Use container to control height
-            search_input = st.text_input(
-                "Your query",
-                placeholder="e.g., I want to be a better parent",
-                label_visibility="collapsed",
-                key="query_input_widget"
-            )
+        search_input = st.text_input(
+            "Search by title",
+            placeholder="Enter content title eg. Atomic habits",
+            label_visibility="collapsed",
+            key="search_input"
+        )
     
     with col_clear:
         # Show clear button only when there's an active search
-        if (st.session_state.search_mode == 'title' and st.session_state.search_query) or \
-           (st.session_state.search_mode == 'query' and st.session_state.query_search_input):
+        if st.session_state.search_query:
             if st.button("✕", key="clear_inline", use_container_width=True, help="Clear search"):
-                if st.session_state.search_mode == 'title':
-                    st.session_state.search_query = ""
-                    st.session_state.search_results = {}
-                else:
-                    st.session_state.query_search_input = ""
-                    st.session_state.query_search_results = []
-                    st.session_state.query_extracted_tags = []
+                st.session_state.search_query = ""
+                st.session_state.search_results = {}
                 st.rerun()
     
     with col2:
         if st.button("🔍 Search", use_container_width=True, type="primary", key="search_btn"):
             if search_input.strip():
-                if st.session_state.search_mode == 'title':
-                    st.session_state.search_query = search_input
-                    perform_search()
-                else:
-                    perform_query_search(search_input)
+                st.session_state.search_query = search_input
+                perform_search()
                 st.rerun()
             else:
                 # Show random content from selected filters
-                if st.session_state.search_mode == 'title' and st.session_state.active_filters:
+                if st.session_state.active_filters:
                     random_content_id = get_random_content_from_filters(st.session_state.active_filters)
                     if random_content_id:
                         st.session_state.selected_content_id = random_content_id
@@ -534,90 +471,13 @@ def display_search_results():
 
 
 def perform_query_search(query: str):
-    """Execute query-based search using tag extraction and ranking."""
-    if not query or not query.strip():
-        st.warning("Please enter a query to search.")
-        return
-    
-    if not st.session_state.active_filters:
-        st.warning("Please select at least one filter.")
-        return
-    
-    try:
-        with st.spinner("🤖 Analyzing your query and finding relevant content..."):
-            # Extract tags from query
-            extracted_tags = extract_tags_from_query(query)
-            
-            if not extracted_tags:
-                st.error("Failed to extract tags from your query. Please try again or rephrase your query.")
-                return
-            
-            # Store extracted tags
-            st.session_state.query_extracted_tags = extracted_tags
-            
-            # Rank content by tags
-            ranked_results = rank_content_by_tags(
-                query_tags=extracted_tags,
-                all_content=st.session_state.all_discovery_content,
-                filters=st.session_state.active_filters
-            )
-            
-            # Store results
-            st.session_state.query_search_results = ranked_results
-            st.session_state.query_search_input = query
-            
-    except Exception as e:
-        st.error(f"An error occurred during search: {str(e)}")
-        st.session_state.query_search_results = []
-        st.session_state.query_extracted_tags = []
+    """Query-based search disabled."""
+    pass
 
 
 def display_query_search_results():
-    """Display query search results with ranked content."""
-    # Show search status
-    if st.session_state.query_search_input:
-        if st.session_state.query_search_results:
-            st.markdown(f"### Results ({len(st.session_state.query_search_results)})")
-        else:
-            st.info(f"No matching content found. Try different keywords or filters.")
-    
-    if not st.session_state.query_search_results:
-        return
-    
-    # Display ranked results directly without tags
-    for i, (content_id, score) in enumerate(st.session_state.query_search_results):
-        if content_id not in st.session_state.all_discovery_content:
-            continue
-        
-        if i > 0:  # Only add separator between items
-            st.markdown("---")
-        
-        content = st.session_state.all_discovery_content[content_id]
-        
-        col1, col2 = st.columns([1, 4])
-        
-        with col1:
-            if content.get('cover_page'):
-                st.image(optimize_image_url(content['cover_page'], width=380), use_container_width=True)
-            else:
-                st.markdown("📄")
-        
-        with col2:
-            st.markdown(f"**{content['title']}**")
-            st.caption(f"{content.get('author', 'Unknown')}")
-            
-            # Show content type and match score
-            type_badge = content.get('content_type', 'unknown').capitalize()
-            score_percent = int(score * 100)
-            st.markdown(
-                f"<span class='content-type-badge'>{type_badge}</span>"
-                f"<span class='similarity-score'>{score_percent}% Match</span>",
-                unsafe_allow_html=True
-            )
-            
-            if st.button("View", key=f"view_query_{content_id}", type="secondary"):
-                handle_content_click(content_id)
-                st.rerun()
+    """Query-based results view disabled."""
+    pass
 
 
 def display_content_viewer(content_id: str):
@@ -750,17 +610,15 @@ def main():
         st.error("❌ No content found in database. Please check your MongoDB connection.")
         return
     
-    # Display unified search bar with toggle
+    # Display search bar
     display_unified_search_bar()
     
-    # Display search results based on mode
-    if st.session_state.search_mode == 'title' and st.session_state.search_query:
+    # Display search results
+    if st.session_state.search_query:
         display_search_results()
-    elif st.session_state.search_mode == 'query' and st.session_state.query_search_input:
-        display_query_search_results()
     
     # Display selected content only if not actively searching
-    if not st.session_state.search_query and not st.session_state.query_search_input:
+    if not st.session_state.search_query:
         if st.session_state.selected_content_id:
             display_content_viewer(st.session_state.selected_content_id)
             
